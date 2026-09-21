@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sözleşme Doldurma Kılavuzu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #DB0962;
+    --switch: #E21871;
+    --pink-2: #F29BC2;
+    --pink-soft: #FFF0F6;
+    --pink-hl: #FFD9E9;
+    --pink-line: #F6C4DA;
+    --plum: #8E1450;
+    --ink: #231F20;
+    --text: #2B2B33;
+    --muted: #6B7280;
+    --faint: #9CA3AF;
+    --line: #D6D6DD;
+    --line-soft: #EAE8EE;
+    --head: #F3F2F5;
+    --bg: #F5F3F6;
+    --card: #FFFFFF;
+    --seg-grey: #C3C3CC;
+    --warn: #B42318;
+    --shadow: 0 1px 2px rgba(35,31,32,.04), 0 10px 28px -14px rgba(35,31,32,.16);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased;
+  }
+  body[data-mode="ga"] [data-only="gy"],
+  body[data-mode="gy"] [data-only="ga"] { display: none !important; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 28px 24px 48px; }
+  .tn { font-variant-numeric: tabular-nums; }
+
+  /* ---------- mode switch ---------- */
+  .switch-wrap { display: flex; justify-content: center; margin: 0 0 30px; }
+  .switch {
+    position: relative; display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 600px;
+    padding: 5px; background: #fff; border: 1px solid #DCDCE0; border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(35,31,32,.05);
+  }
+  .switch::before {
+    content: ""; position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px);
+    border-radius: 999px; background: var(--switch); box-shadow: 0 6px 14px -6px rgba(226,24,113,.6);
+    transition: transform .28s cubic-bezier(.3,.7,.2,1);
+  }
+  body[data-mode="gy"] .switch::before { transform: translateX(100%); }
+  .switch button {
+    position: relative; z-index: 1; font: inherit; font-size: 15px; font-weight: 700; color: var(--ink);
+    background: none; border: 0; padding: 15px 12px; border-radius: 999px; cursor: pointer; transition: color .2s;
+  }
+  .switch button[aria-pressed="true"] { color: #fff; }
+  .switch button:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+
+  /* ---------- page header ---------- */
+  .top { margin-bottom: 22px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--pink); margin: 0 0 8px;
+  }
+  .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--pink); border-radius: 2px; }
+  h1 { margin: 0; font-size: 32px; line-height: 1.12; letter-spacing: -.02em; color: var(--ink); font-weight: 800; }
+  .lead { margin: 12px 0 0; max-width: 760px; color: var(--muted); font-size: 15px; }
+  .lead strong { color: var(--text); font-weight: 700; }
+  .legal {
+    margin: 12px 0 0; max-width: 760px; font-size: 11.5px; line-height: 1.55; color: var(--muted);
+    padding-left: 11px; border-left: 2px solid var(--pink-line);
+  }
+
+  /* ---------- calculator ---------- */
+  .calc {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: 16px;
+    padding: 18px 22px 20px; box-shadow: var(--shadow); margin-bottom: 24px;
+  }
+  .calc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .calc-head .t { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .ghost {
+    font: inherit; font-size: 12.5px; font-weight: 600; color: var(--muted);
+    background: transparent; border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 12px; cursor: pointer; transition: color .15s, border-color .15s, background .15s;
+  }
+  .ghost:hover { color: var(--pink); border-color: var(--pink-line); background: var(--pink-soft); }
+  .ghost:focus-visible, .link:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+  .link { font: inherit; font-weight: 700; color: var(--pink); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+
+  .picker { background: var(--head); border-radius: 12px; margin-bottom: 16px; }
+  .picker-t {
+    display: flex; align-items: center; gap: 4px 14px; padding: 12px 16px; border-radius: 12px;
+    list-style: none; cursor: pointer; user-select: none; font-size: 13px; font-weight: 700; color: var(--ink);
+  }
+  .picker-t::-webkit-details-marker { display: none; }
+  .picker-t::marker { content: ""; }
+  .picker-t:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+  .pt-main { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+  .pt-main span { font-size: 12px; font-weight: 500; color: var(--muted); }
+  .p-sum { font-size: 12.5px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+  .p-sum b { color: var(--ink); font-weight: 700; }
+  .chev {
+    flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; border: 1px solid var(--line); color: var(--muted); transition: transform .2s, color .15s, border-color .15s;
+  }
+  .chev svg { width: 11px; height: 11px; display: block; }
+  .picker-t:hover .chev { color: var(--pink); border-color: var(--pink-line); }
+  .picker[open] .chev { transform: rotate(180deg); }
+  .picker[open] .p-sum { display: none; }
+  .picker-body { padding: 0 16px 12px; }
+  .picker-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr .8fr; gap: 10px 12px; }
+  .picker label { display: block; font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .picker .cap { margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .picker .cap b { color: var(--ink); font-weight: 700; }
+  .sel {
+    -webkit-appearance: none; appearance: none; width: 100%; font: inherit; font-size: 14px; font-weight: 600; color: var(--ink);
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%236B7280' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center / 11px;
+    border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 32px 9px 12px; cursor: pointer;
+    transition: border-color .15s, box-shadow .15s; text-overflow: ellipsis;
+  }
+  .sel:focus { outline: 0; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(219,9,98,.14); }
+  .sel:disabled { color: var(--faint); background-color: #FAFAFB; cursor: not-allowed; }
+
+  .calc-row { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 240px) 1fr; gap: 16px 20px; align-items: start; }
+  .calc-row.one { grid-template-columns: minmax(0, 260px) 1fr; }
+  .in label { display: block; font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .money {
+    display: flex; align-items: center; background: #fff;
+    border: 1.5px solid var(--line); border-radius: 10px;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .money:focus-within { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(219,9,98,.14); }
+  .money input {
+    flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+    font: inherit; font-size: 21px; font-weight: 700; color: var(--ink);
+    padding: 9px 0 9px 13px; font-variant-numeric: tabular-nums;
+  }
+  .money span { padding: 0 13px 0 6px; color: var(--muted); font-weight: 600; }
+  .in small { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; min-height: 17px; }
+  .in small.warn { color: var(--warn); font-weight: 600; }
+  .result { justify-self: end; text-align: right; }
+  .result .lbl { font-size: 12px; font-weight: 700; color: var(--muted); }
+  .result .big { display: block; font-size: 36px; font-weight: 800; color: var(--pink); letter-spacing: -.02em; line-height: 1.12; margin-top: 2px; }
+  .result small { color: var(--muted); font-size: 12px; }
+
+  .split { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+  .split .cap { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+  .bar { display: flex; gap: 2px; height: 14px; border-radius: 999px; overflow: hidden; background: var(--line-soft); }
+  .bar i { display: block; height: 100%; flex: 0 1 0; transition: flex-grow .25s ease; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .legend b { color: var(--ink); font-weight: 700; }
+  .c-arge { background: var(--pink); }
+  .c-pz { background: var(--pink-2); }
+  .c-kdv { background: var(--ink); }
+  .c-lst { background: var(--seg-grey); }
+
+  /* ---------- main grid ---------- */
+  .grid { display: grid; grid-template-columns: minmax(0, 1.38fr) minmax(340px, 1fr); gap: 24px; align-items: start; }
+  .paper-col { position: sticky; top: 16px; }
+  .col-t { font-size: 13px; font-weight: 700; color: var(--ink); margin: 0 0 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+  .col-t span { font-weight: 500; color: var(--faint); font-size: 12px; }
+
+  /* ---------- the form replica ---------- */
+  .paper { background: #fff; border: 1px solid var(--line-soft); border-radius: 14px; padding: 22px 22px 24px; box-shadow: var(--shadow); }
+  .paper-top { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .paper-top svg { height: 22px; width: auto; color: #E21871; display: block; flex: none; }
+  .paper-top .ttl { flex: 1; text-align: center; font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: .01em; }
+  .paper-top .code {
+    flex: none; width: 76px; height: 38px; border: 1px solid var(--line); border-radius: 6px;
+    display: flex; align-items: center; padding-left: 10px; font-size: 16px; font-weight: 700; color: var(--ink);
+  }
+  .sec {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--ink); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .02em;
+    padding: 7px 11px; border-radius: 5px; margin: 20px 0 10px;
+  }
+  .sec .pay { font-size: 11px; font-weight: 700; letter-spacing: 0; word-spacing: 2px; white-space: nowrap; }
+  .sec .pay b { margin-left: 12px; font-weight: 700; }
+  .paper-top + .sec { margin-top: 0; }
+  .tscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.f { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; }
+  table.f th { background: var(--head); text-align: left; font-weight: 700; color: var(--ink); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  table.f th:first-child { border-top-left-radius: 6px; }
+  table.f th:last-child { border-top-right-radius: 6px; }
+  table.f td { padding: 7px 10px; height: 38px; color: var(--ink); }
+  table.f th + th, table.f td + td { border-left: 1px solid var(--line); }
+  table.f tbody tr + tr td { border-top: 1px solid var(--line); }
+  table.f.argetbl { min-width: 470px; }
+  table.f.argetbl.gy { min-width: 560px; }
+  table.f.argetbl.gy th { white-space: normal; line-height: 1.3; }
+  table.f.argetbl.gy td:first-child { min-width: 150px; }
+  table.f.othertbl { min-width: 560px; }
+  table.f.argetbl td:first-child { min-width: 170px; }
+  table.f.othertbl td:nth-child(2) { min-width: 150px; }
+  table.f.othertbl th:first-child { width: 13%; }
+  table.f th.n { width: 1%; }
+  .foot { font-size: 10.5px; color: var(--muted); margin: 5px 2px 0; text-align: right; }
+  .foot.marks { color: var(--text); font-weight: 600; }
+
+  .fill { background: var(--pink-soft); transition: background .15s, box-shadow .15s; cursor: pointer; }
+  .fill .cell { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .v { color: var(--pink); font-weight: 800; font-variant-numeric: tabular-nums; }
+  .star { color: var(--pink); font-size: 12px; line-height: 1; }
+  .dia { color: var(--plum); font-size: 12px; line-height: 1; }
+  .empty { color: var(--faint); font-style: italic; font-weight: 500; }
+  [data-step].hl.fill, [data-step].hl .box { background: var(--pink-hl); box-shadow: inset 0 0 0 2px var(--pink); }
+  table.f td .cell { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  /* The printed Listeleme row is one step: it highlights as a whole row. */
+  tr.lst-row { cursor: pointer; }
+  tr.lst-row td { transition: background .15s, box-shadow .15s; }
+  tr.lst-row.hl td { background: #F1F0F3; box-shadow: inset 0 2px 0 var(--ink), inset 0 -2px 0 var(--ink); }
+  tr.lst-row.hl td:first-child { box-shadow: inset 2px 0 0 var(--ink), inset 0 2px 0 var(--ink), inset 0 -2px 0 var(--ink); }
+  tr.lst-row.hl td:last-child { box-shadow: inset -2px 0 0 var(--ink), inset 0 2px 0 var(--ink), inset 0 -2px 0 var(--ink); }
+  /* Amounts that add up to the total being pointed at. */
+  td.add { background: #FFE3EF; outline: 2px dashed var(--pink); outline-offset: -4px; }
+  .fld.add .box { background: #FFE3EF; outline: 2px dashed var(--pink); outline-offset: -4px; }
+
+  .b {
+    flex: none; display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--pink); color: #fff; font-size: 10.5px; font-weight: 800; line-height: 1;
+  }
+
+  .fields { display: grid; gap: 10px 12px; }
+  .fields.gt { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fields.gt3 { grid-template-columns: 1.35fr 1fr 1.35fr; }
+  .fields.op { grid-template-columns: 1.25fr 1fr 1fr .8fr; }
+  .fld { min-width: 0; }
+  .fld label { display: block; font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .box {
+    min-height: 36px; border: 1px solid var(--line); border-radius: 6px; background: #fff;
+    display: flex; align-items: center; gap: 6px; padding: 6px 9px; font-size: 12.5px; white-space: nowrap; overflow: hidden;
+    transition: background .15s, box-shadow .15s;
+  }
+  .fld.fillable { cursor: pointer; }
+  .fld.fillable .box { background: var(--pink-soft); border-color: var(--pink-line); }
+  .box.printed { font-size: 11.5px; font-weight: 500; color: var(--ink); white-space: normal; line-height: 1.3; }
+  .fine { font-size: 10px; color: var(--muted); margin: 7px 0 0; line-height: 1.45; }
+  .opgrid { display: grid; grid-template-columns: .85fr .95fr 1.6fr 1.05fr 1.05fr 1.5fr 1.5fr; gap: 8px 10px; min-width: 560px; }
+  .opgrid .lb { font-size: 12px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .opgrid .box { min-height: 32px; }
+
+  /* ---------- steps ---------- */
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .step {
+    background: #fff; border: 1px solid var(--line-soft); border-radius: 12px; padding: 12px 14px;
+    display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 0 11px; align-items: start;
+    transition: border-color .15s, box-shadow .15s; outline: none;
+  }
+  .step .b { width: 24px; height: 24px; font-size: 12px; margin-top: 1px; }
+  .step h3 { margin: 0; font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .step .where { display: block; font-size: 10.5px; font-weight: 700; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+  .step .val { font-size: 17px; font-weight: 800; color: var(--pink); white-space: nowrap; text-align: right; line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .step .val .star, .step .val .dia { font-size: 13px; margin-left: 3px; }
+  .step .val.muted { color: var(--faint); font-weight: 700; font-size: 14px; font-style: italic; }
+  .step p { grid-column: 2 / -1; margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+  .step p strong { color: var(--text); font-weight: 700; }
+  .calcline {
+    grid-column: 2 / -1; margin-top: 7px; font-size: 12.5px; background: var(--head); border-radius: 7px;
+    padding: 6px 10px; color: var(--text); font-variant-numeric: tabular-nums;
+  }
+  .calcline b { color: var(--ink); font-weight: 800; }
+  .step.hl, .step:focus-visible { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(219,9,98,.12); }
+  .step.info { background: #FAFAFB; border-style: dashed; border-color: var(--line); }
+  .step.info .b { background: var(--ink); font-size: 13px; }
+  .step.info .val { color: var(--ink); }
+  .step.info.hl { border-color: var(--ink); border-style: solid; box-shadow: 0 0 0 3px rgba(35,31,32,.10); }
+  .step.total { background: var(--pink-soft); border-color: var(--pink-line); }
+  .step.total .val { font-size: 20px; }
+
+  .note { margin-top: 26px; font-size: 12px; color: var(--faint); text-align: center; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1080px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .paper-col { position: static; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 16px 16px 36px; }
+    .switch-wrap { margin-bottom: 22px; }
+    .switch button { font-size: 14px; padding: 13px 8px; }
+    h1 { font-size: 25px; }
+    .lead { font-size: 14px; }
+    .calc { padding: 16px 16px 18px; }
+    .picker-t { flex-wrap: wrap; padding: 12px; }
+    .picker-body { padding: 0 12px 11px; }
+    .pt-main { order: 1; }
+    .chev { order: 2; }
+    .p-sum { order: 3; width: 100%; white-space: normal; }
+    .picker-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .calc-row, .calc-row.one { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .result { grid-column: 1 / -1; justify-self: stretch; text-align: left; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
+    .result .big { font-size: 30px; order: 2; }
+    .result .lbl { width: 100%; order: 1; }
+    .result small { order: 3; }
+    .paper { padding: 16px 14px 18px; }
+    .paper-top .ttl { font-size: 11px; }
+    .sec { flex-wrap: wrap; }
+    .fields.gt, .fields.op { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fields.gt3 { grid-template-columns: minmax(0, 1fr); }
+    .fld label { white-space: normal; }
+  }
+  @media (max-width: 420px) {
+    .calc-row, .calc-row.one { grid-template-columns: minmax(0, 1fr); }
+    .calc-head { flex-wrap: wrap; }
+    .paper-top .code { width: 56px; }
+  }
+  @media print {
+    @page { size: A4 landscape; margin: 9mm; }
+    body { background: #fff; font-size: 12px; }
+    .wrap { max-width: none; padding: 0; }
+    .ghost, .switch-wrap { display: none; }
+    .calc, .paper, .step { box-shadow: none; }
+    .grid { grid-template-columns: 1.38fr 1fr; gap: 16px; }
+    .paper-col { position: static; }
+    .step { break-inside: avoid; padding: 8px 12px; }
+    .steps { gap: 6px; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body data-mode="ga">
+<div class="wrap">
+
+  <div class="switch-wrap">
+    <div class="switch" role="group" aria-label="Sözleşme türü">
+      <button type="button" data-set-mode="ga" aria-pressed="true">Aylık Sözleşme</button>
+      <button type="button" data-set-mode="gy" aria-pressed="false">Yıllık Sözleşme</button>
+    </div>
+  </div>
+
+  <header class="top">
+    <p class="eyebrow">Yeni KDV kuralı</p>
+    <h1><span data-only="ga">Aylık sözleşme (GA) nasıl doldurulur?</span><span data-only="gy">Yıllık sözleşme (GY) nasıl doldurulur?</span></h1>
+    <p class="lead">
+      Satış tutarı sözleşmede ikiye bölünür: <strong>%85'i KDV'siz lisans bedeli</strong>,
+      <strong>%15'i KDV'li pazarlama bedeli</strong> olarak yazılır.
+    </p>
+    <p class="legal">4691 sayılı kanun kapsamında Pazarlama ve Organizasyon Hizmeti bedeli, anılan istisna kapsamında olmadığından genel hükümler çerçevesinde KDV'ye tabidir; yürürlükteki oran üzerinden hesaplanan KDV, bu bedellere ilave edilerek müşteriden tahsil edilir.</p>
+  </header>
+
+  <section class="calc" aria-label="Hesaplayıcı">
+    <div class="calc-head">
+      <span class="t"><span data-only="ga">Tutarları girin</span><span data-only="gy">Tutarı girin</span></span>
+      <button type="button" class="ghost" id="reset">↺ Örneğe dön</button>
+    </div>
+
+    <!-- Aylık: list price picker -->
+    <details class="picker" data-only="ga">
+      <summary class="picker-t">
+        <span class="pt-main">Liste fiyatını seçin <span>Eylül 2026 Winner liste fiyatları, ₺/ay</span></span>
+        <span class="p-sum tn" id="p-sum"></span>
+        <span class="chev" aria-hidden="true"><svg viewBox="0 0 12 8"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </summary>
+      <div class="picker-body">
+      <div class="picker-grid">
+        <div><label for="p-il">İl</label><select class="sel" id="p-il"></select></div>
+        <div><label for="p-ilce">İlçe</label><select class="sel" id="p-ilce"></select></div>
+        <div><label for="p-kat">Kategori</label><select class="sel" id="p-kat"></select></div>
+        <div><label for="p-pkt">Paket</label><select class="sel" id="p-pkt"></select></div>
+      </div>
+      <div class="cap tn" id="p-cap"></div>
+      </div>
+    </details>
+
+    <div class="calc-row" data-only="ga">
+      <div class="in">
+        <label for="ga-sale">Aylık satış fiyatı</label>
+        <div class="money"><input id="ga-sale" inputmode="decimal" autocomplete="off" value="10.000"><span>TL</span></div>
+        <small id="ga-sale-hint">Firmayla anlaşılan aylık tutar</small>
+      </div>
+      <div class="in">
+        <label for="ga-list">Aylık liste fiyatı</label>
+        <div class="money"><input id="ga-list" inputmode="decimal" autocomplete="off" value="51.424"><span>TL</span></div>
+        <small id="ga-list-hint"></small>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="lbl">Aylık Ödenecek Tutar</span>
+        <span class="big tn"><span data-v="ga-total">10.600</span> TL</span>
+        <small>= satış fiyatı × 1,03 + 300 TL</small>
+      </div>
+    </div>
+
+    <div class="calc-row one" data-only="gy">
+      <div class="in">
+        <label for="gy-sale">Sözleşme toplam tutarı</label>
+        <div class="money"><input id="gy-sale" inputmode="decimal" autocomplete="off" value="180.000"><span>TL</span></div>
+        <small id="gy-sale-hint">Yıllık sözleşmenin toplam tutarı</small>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="lbl">Genel Toplam</span>
+        <span class="big tn"><span data-v="gy-gtotal">189.000</span> TL</span>
+        <small>= sözleşme tutarı × 1,03 + 3.600 TL</small>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="cap"><span data-only="ga">Firmanın her ay ödediği tutar nereden geliyor?</span><span data-only="gy">Sözleşmenin genel toplamı nereden geliyor?</span></div>
+      <div class="bar" aria-hidden="true">
+        <i class="c-arge" id="seg-arge"></i><i class="c-pz" id="seg-pz"></i><i class="c-kdv" id="seg-kdv"></i><i class="c-lst" id="seg-lst"></i>
+      </div>
+      <div class="legend tn">
+        <span><i class="dot c-arge"></i>Lisans bedeli (KDV yok) <b><span data-v="bar-arge">8.500</span> TL</b></span>
+        <span><i class="dot c-pz"></i>Pazarlama bedeli <b><span data-v="bar-pz">1.500</span> TL</b></span>
+        <span><i class="dot c-kdv"></i>Pazarlama KDV'si <b><span data-v="bar-kdv">300</span> TL</b></span>
+        <span><i class="dot c-lst"></i>Listeleme (KDV dahil) <b><span data-v="bar-lst">300</span> TL</b></span>
+      </div>
+    </div>
+  </section>
+
+  <main class="grid">
+
+    <div class="paper-col">
+      <p class="col-t">Sözleşme formu <span>Yalnızca tutar içeren bölümler gösterilmiştir</span></p>
+
+      <!-- ================= GA ================= -->
+      <div class="paper" data-only="ga">
+        <div class="paper-top">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="33.07 24.1 115.75 22" role="img" aria-label="düğün.com"><path fill="currentColor" d="M63.02 26.75L63.95 24.36C65.01 24.76 65.87 25.02 67 25.02C68.12 25.02 68.98 24.76 70.04 24.36L71.17 26.75C69.84 27.41 68.52 27.87 67 27.87C65.47 27.87 64.15 27.41 63.02 26.75ZM93.37 29.2C96.28 29.2 98 30.72 98.47 34.23L99.33 40.39L96.02 40.39L95.15 34.43C94.96 32.91 94.49 32.05 93.37 32.05C92.24 32.05 91.64 32.91 91.64 34.43L91.64 40.39L88.33 40.39L88.33 34.23C88.33 30.72 90.45 29.2 93.37 29.2ZM136.3 29.2C137.69 29.2 138.88 29.66 139.74 30.92C140.61 29.73 141.8 29.2 143.19 29.2C145.57 29.2 147.36 30.72 147.89 34.23L148.82 40.39L145.57 40.39L144.71 34.43C144.51 32.91 143.85 32.05 142.73 32.05C141.67 32.05 141.14 33.11 141.27 34.43L141.8 40.39L138.62 40.39L138.09 34.43C137.96 32.91 137.43 32.05 136.36 32.05C135.24 32.05 134.64 32.91 134.64 34.43L134.64 40.39L131.33 40.39L131.33 34.23C131.33 30.72 133.71 29.2 136.3 29.2ZM105.66 35.03C105.66 31.58 108.37 29.2 111.95 29.2C113.41 29.2 114.67 29.59 115.66 30.26L114.53 32.91C114 32.44 113.21 32.05 112.15 32.05C110.36 32.05 108.97 33.3 108.97 35.03C108.97 36.75 110.36 37.94 112.15 37.94C113.21 37.94 114 37.55 114.53 37.08L115.66 39.73C114.67 40.39 113.41 40.79 111.95 40.79C108.37 40.79 105.66 38.47 105.66 35.03ZM66.86 37.94C65.21 37.94 64.08 36.75 64.08 35.03C64.08 33.3 65.21 32.05 66.86 32.05C68.52 32.05 69.65 33.3 69.65 35.03C69.65 36.75 68.52 37.94 66.86 37.94M66.9 29.2C63.58 29.2 60.73 31.38 60.73 34.96C60.73 38.54 63.45 40.79 66.76 40.79C67.89 40.79 68.88 40.53 69.55 40.06C69.55 41.79 68.09 43.24 65.7 43.24C64.31 43.24 62.92 42.78 61.66 41.92L61 44.97C62.59 45.69 64.31 46.09 66.1 46.09C71.14 46.09 72.99 42.84 72.99 39.36L72.99 35.62C72.99 31.38 70.21 29.2 66.9 29.2ZM39.23 37.94C37.58 37.94 36.45 36.68 36.45 34.96C36.45 33.24 37.58 32.05 39.23 32.05C40.89 32.05 42.02 33.24 42.02 34.96C42.02 36.68 40.89 37.94 39.23 37.94M42.02 25.22L42.02 30.12C41.42 29.59 40.43 29.2 39.1 29.2C35.79 29.2 33.07 31.45 33.07 35.03C33.07 38.61 35.92 40.79 39.23 40.79C42.55 40.79 45.33 38.61 45.33 35.03L45.33 25.22L42.02 25.22ZM123.18 37.94C121.52 37.94 120.33 36.68 120.33 35.03C120.33 33.37 121.52 32.05 123.18 32.05C124.84 32.05 126.03 33.37 126.03 35.03C126.03 36.68 124.84 37.94 123.18 37.94M123.18 29.2C119.74 29.2 117.02 31.58 117.02 35.03C117.02 38.47 119.74 40.79 123.18 40.79C126.63 40.79 129.34 38.47 129.34 35.03C129.34 31.58 126.63 29.2 123.18 29.2ZM47.98 35.56L47.98 29.59L51.29 29.59L51.29 35.56C51.29 37.08 52.15 37.94 53.28 37.94C54.41 37.94 55.27 37.08 55.27 35.56L55.27 29.59L58.58 29.59L58.58 35.56C58.58 38.87 56.59 40.79 53.28 40.79C49.97 40.79 47.98 38.87 47.98 35.56ZM48.36 26.13C48.36 24.92 49.27 24.1 50.43 24.1C51.58 24.1 52.49 24.92 52.49 26.13C52.49 27.34 51.58 28.16 50.43 28.16C49.27 28.16 48.36 27.34 48.36 26.13ZM54.07 26.13C54.07 24.92 54.98 24.1 56.14 24.1C57.29 24.1 58.2 24.92 58.2 26.13C58.2 27.34 57.29 28.16 56.14 28.16C54.98 28.16 54.07 27.34 54.07 26.13ZM75.21 35.56L75.21 29.59L78.52 29.59L78.52 35.56C78.52 37.08 79.39 37.94 80.51 37.94C81.64 37.94 82.5 37.08 82.5 35.56L82.5 29.59L85.81 29.59L85.81 35.56C85.81 38.87 83.82 40.79 80.51 40.79C77.2 40.79 75.21 38.87 75.21 35.56ZM75.59 26.13C75.59 24.92 76.5 24.1 77.66 24.1C78.81 24.1 79.72 24.92 79.72 26.13C79.72 27.34 78.81 28.16 77.66 28.16C76.5 28.16 75.59 27.34 75.59 26.13ZM81.3 26.13C81.3 24.92 82.21 24.1 83.37 24.1C84.52 24.1 85.43 24.92 85.43 26.13C85.43 27.34 84.52 28.16 83.37 28.16C82.21 28.16 81.3 27.34 81.3 26.13ZM100.58 38.76C100.58 37.54 101.49 36.72 102.64 36.72C103.79 36.72 104.71 37.54 104.71 38.76C104.71 39.97 103.79 40.79 102.64 40.79C101.49 40.79 100.58 39.97 100.58 38.76Z"/></svg>
+          <div class="ttl">ARGE VE ÜYELİK SÖZLEŞMESİ</div>
+          <div class="code">GA</div>
+        </div>
+
+        <div class="sec">SATIN ALINAN ARGE ÜRÜNLERİ</div>
+        <div class="tscroll">
+          <table class="f argetbl">
+            <thead><tr><th>Ürün Adı</th><th>Firma Faaliyet Alanı</th><th class="n">Adet</th><th>Fiyat / Lisans Kullanım Bedeli *</th></tr></thead>
+            <tbody><tr>
+              <td>Gen AI Tabanlı Müşteri İlişkileri Çözümü</td><td>Mekan</td><td>1</td>
+              <td class="fill" data-step="ga-1"><div class="cell"><span class="b">1</span><span class="v"><span data-v="ga-arge">8.500</span> TL</span><span class="star">★</span></div></td>
+            </tr></tbody>
+          </table>
+        </div>
+        <p class="foot">*KDVK Geç. 20/1 kapsamında KDV'den müstesna</p>
+
+        <div class="sec">SATIN ALINAN DİĞER ÜRÜNLER</div>
+        <div class="tscroll">
+          <table class="f othertbl">
+            <thead><tr><th>Mecra</th><th>Ürün Adı</th><th class="n">Adet</th><th>KDV Hariç Fiyat</th><th>KDV</th><th>KDV Dahil Fiyat</th></tr></thead>
+            <tbody>
+              <tr class="lst-row" data-step="ga-L">
+                <td>düğün.com</td><td>Listeleme</td><td>1</td><td>250 TL</td><td>50 TL</td>
+                <td data-part="ga-lst"><div class="cell">300 TL<span class="star">★</span></div></td>
+              </tr>
+              <tr>
+                <td></td><td>Pazarlama ve Organizasyon (Seri Üretim) Bedeli</td><td></td>
+                <td class="fill" data-step="ga-2"><div class="cell"><span class="b">2</span><span class="v"><span data-v="ga-pz">1.500</span> TL</span></div></td>
+                <td class="fill" data-step="ga-3"><div class="cell"><span class="b">3</span><span class="v"><span data-v="ga-kdv">300</span> TL</span></div></td>
+                <td class="fill" data-step="ga-4"><div class="cell"><span class="b">4</span><span class="v"><span data-v="ga-pzd">1.800</span> TL</span><span class="star">★</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="foot marks"><span class="star">★</span> Aylık Ödenecek Tutar'a eklenir</p>
+
+        <div class="sec">GENEL TOPLAM</div>
+        <div class="fields gt">
+          <div class="fld fillable" data-step="ga-5"><label>Aylık Liste Fiyatı</label><div class="box"><span class="b">5</span><span class="v"><span data-v="ga-list">51.424</span> TL</span></div></div>
+          <div class="fld fillable" data-step="ga-6"><label>Aylık İndirim Tutarı</label><div class="box"><span class="b">6</span><span class="v"><span data-v="ga-disc">41.424</span> TL</span></div></div>
+          <div class="fld fillable" data-step="ga-7"><label>Kampanya İndirim Tutarı</label><div class="box"><span class="b">7</span><span class="empty">boş</span></div></div>
+          <div class="fld fillable" data-step="ga-8"><label>Aylık Ödenecek Tutar</label><div class="box"><span class="b">8</span><span class="v"><span data-v="ga-total">10.600</span> TL</span></div></div>
+        </div>
+        <p class="fine">Aylık katılım bedeli 1 (bir) aylık liste fiyatı kadardır. 12 ay taahhütlü üyelik karşılığında katılım bedeli alınmayacaktır. Katılım bedeli devam eden sözleşmelerde güncellenir.</p>
+
+        <div class="sec">ÖDEME PLANI</div>
+        <div class="fields op">
+          <div class="fld"><label>Ödeme Şekli</label><div class="box printed">Kredi Kartı Aylık Ödeme</div></div>
+          <div class="fld"><label>İlk Ay Ödenecek Tutar</label><div class="box"></div></div>
+          <div class="fld"><label>Vade Tarihi</label><div class="box"></div></div>
+          <div class="fld"><label>Tarih</label><div class="box printed">Her Ayın</div></div>
+        </div>
+      </div>
+
+      <!-- ================= GY ================= -->
+      <div class="paper" data-only="gy">
+        <div class="paper-top">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="33.07 24.1 115.75 22" role="img" aria-label="düğün.com"><path fill="currentColor" d="M63.02 26.75L63.95 24.36C65.01 24.76 65.87 25.02 67 25.02C68.12 25.02 68.98 24.76 70.04 24.36L71.17 26.75C69.84 27.41 68.52 27.87 67 27.87C65.47 27.87 64.15 27.41 63.02 26.75ZM93.37 29.2C96.28 29.2 98 30.72 98.47 34.23L99.33 40.39L96.02 40.39L95.15 34.43C94.96 32.91 94.49 32.05 93.37 32.05C92.24 32.05 91.64 32.91 91.64 34.43L91.64 40.39L88.33 40.39L88.33 34.23C88.33 30.72 90.45 29.2 93.37 29.2ZM136.3 29.2C137.69 29.2 138.88 29.66 139.74 30.92C140.61 29.73 141.8 29.2 143.19 29.2C145.57 29.2 147.36 30.72 147.89 34.23L148.82 40.39L145.57 40.39L144.71 34.43C144.51 32.91 143.85 32.05 142.73 32.05C141.67 32.05 141.14 33.11 141.27 34.43L141.8 40.39L138.62 40.39L138.09 34.43C137.96 32.91 137.43 32.05 136.36 32.05C135.24 32.05 134.64 32.91 134.64 34.43L134.64 40.39L131.33 40.39L131.33 34.23C131.33 30.72 133.71 29.2 136.3 29.2ZM105.66 35.03C105.66 31.58 108.37 29.2 111.95 29.2C113.41 29.2 114.67 29.59 115.66 30.26L114.53 32.91C114 32.44 113.21 32.05 112.15 32.05C110.36 32.05 108.97 33.3 108.97 35.03C108.97 36.75 110.36 37.94 112.15 37.94C113.21 37.94 114 37.55 114.53 37.08L115.66 39.73C114.67 40.39 113.41 40.79 111.95 40.79C108.37 40.79 105.66 38.47 105.66 35.03ZM66.86 37.94C65.21 37.94 64.08 36.75 64.08 35.03C64.08 33.3 65.21 32.05 66.86 32.05C68.52 32.05 69.65 33.3 69.65 35.03C69.65 36.75 68.52 37.94 66.86 37.94M66.9 29.2C63.58 29.2 60.73 31.38 60.73 34.96C60.73 38.54 63.45 40.79 66.76 40.79C67.89 40.79 68.88 40.53 69.55 40.06C69.55 41.79 68.09 43.24 65.7 43.24C64.31 43.24 62.92 42.78 61.66 41.92L61 44.97C62.59 45.69 64.31 46.09 66.1 46.09C71.14 46.09 72.99 42.84 72.99 39.36L72.99 35.62C72.99 31.38 70.21 29.2 66.9 29.2ZM39.23 37.94C37.58 37.94 36.45 36.68 36.45 34.96C36.45 33.24 37.58 32.05 39.23 32.05C40.89 32.05 42.02 33.24 42.02 34.96C42.02 36.68 40.89 37.94 39.23 37.94M42.02 25.22L42.02 30.12C41.42 29.59 40.43 29.2 39.1 29.2C35.79 29.2 33.07 31.45 33.07 35.03C33.07 38.61 35.92 40.79 39.23 40.79C42.55 40.79 45.33 38.61 45.33 35.03L45.33 25.22L42.02 25.22ZM123.18 37.94C121.52 37.94 120.33 36.68 120.33 35.03C120.33 33.37 121.52 32.05 123.18 32.05C124.84 32.05 126.03 33.37 126.03 35.03C126.03 36.68 124.84 37.94 123.18 37.94M123.18 29.2C119.74 29.2 117.02 31.58 117.02 35.03C117.02 38.47 119.74 40.79 123.18 40.79C126.63 40.79 129.34 38.47 129.34 35.03C129.34 31.58 126.63 29.2 123.18 29.2ZM47.98 35.56L47.98 29.59L51.29 29.59L51.29 35.56C51.29 37.08 52.15 37.94 53.28 37.94C54.41 37.94 55.27 37.08 55.27 35.56L55.27 29.59L58.58 29.59L58.58 35.56C58.58 38.87 56.59 40.79 53.28 40.79C49.97 40.79 47.98 38.87 47.98 35.56ZM48.36 26.13C48.36 24.92 49.27 24.1 50.43 24.1C51.58 24.1 52.49 24.92 52.49 26.13C52.49 27.34 51.58 28.16 50.43 28.16C49.27 28.16 48.36 27.34 48.36 26.13ZM54.07 26.13C54.07 24.92 54.98 24.1 56.14 24.1C57.29 24.1 58.2 24.92 58.2 26.13C58.2 27.34 57.29 28.16 56.14 28.16C54.98 28.16 54.07 27.34 54.07 26.13ZM75.21 35.56L75.21 29.59L78.52 29.59L78.52 35.56C78.52 37.08 79.39 37.94 80.51 37.94C81.64 37.94 82.5 37.08 82.5 35.56L82.5 29.59L85.81 29.59L85.81 35.56C85.81 38.87 83.82 40.79 80.51 40.79C77.2 40.79 75.21 38.87 75.21 35.56ZM75.59 26.13C75.59 24.92 76.5 24.1 77.66 24.1C78.81 24.1 79.72 24.92 79.72 26.13C79.72 27.34 78.81 28.16 77.66 28.16C76.5 28.16 75.59 27.34 75.59 26.13ZM81.3 26.13C81.3 24.92 82.21 24.1 83.37 24.1C84.52 24.1 85.43 24.92 85.43 26.13C85.43 27.34 84.52 28.16 83.37 28.16C82.21 28.16 81.3 27.34 81.3 26.13ZM100.58 38.76C100.58 37.54 101.49 36.72 102.64 36.72C103.79 36.72 104.71 37.54 104.71 38.76C104.71 39.97 103.79 40.79 102.64 40.79C101.49 40.79 100.58 39.97 100.58 38.76Z"/></svg>
+          <div class="ttl">ARGE VE ÜYELİK SÖZLEŞMESİ</div>
+          <div class="code">GY</div>
+        </div>
+
+        <div class="sec">SATIN ALINAN ARGE ÜRÜNLERİ</div>
+        <div class="tscroll">
+          <table class="f argetbl gy">
+            <thead><tr><th>Ürün Adı</th><th>Firma Faaliyet Alanı</th><th>Sözleşme Süresi</th><th class="n">Adet</th><th>Fiyat / Lisans Kullanım Bedeli *</th></tr></thead>
+            <tbody><tr>
+              <td>Gen AI Tabanlı Müşteri İlişkileri Çözümü</td><td>Mekan</td><td>1 Yıl</td><td>1</td>
+              <td class="fill" data-step="gy-1"><div class="cell"><span class="b">1</span><span class="v"><span data-v="gy-arge">153.000</span> TL</span><span class="star">★</span></div></td>
+            </tr></tbody>
+          </table>
+        </div>
+        <p class="foot">*KDVK Geç. 20/1 kapsamında KDV'den müstesna</p>
+
+        <div class="sec">SATIN ALINAN DİĞER ÜRÜNLER</div>
+        <div class="tscroll">
+          <table class="f othertbl">
+            <thead><tr><th>Mecra</th><th>Ürün Adı</th><th class="n">Adet</th><th>KDV Hariç Fiyat</th><th>KDV</th><th>KDV Dahil Fiyat</th></tr></thead>
+            <tbody>
+              <tr class="lst-row" data-step="gy-L">
+                <td>düğün.com</td><td>Listeleme</td><td>1</td>
+                <td data-part="gy-lst-net"><div class="cell">3.000 TL<span class="star">★</span></div></td>
+                <td data-part="gy-lst-kdv"><div class="cell">600 TL<span class="dia">◆</span></div></td>
+                <td>3.600 TL</td>
+              </tr>
+              <tr>
+                <td></td><td>Pazarlama ve Organizasyon (Seri Üretim) Bedeli</td><td></td>
+                <td class="fill" data-step="gy-2"><div class="cell"><span class="b">2</span><span class="v"><span data-v="gy-pz">27.000</span> TL</span><span class="star">★</span></div></td>
+                <td class="fill" data-step="gy-3"><div class="cell"><span class="b">3</span><span class="v"><span data-v="gy-kdv">5.400</span> TL</span><span class="dia">◆</span></div></td>
+                <td class="fill" data-step="gy-4"><div class="cell"><span class="b">4</span><span class="v"><span data-v="gy-pzd">32.400</span> TL</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="foot marks"><span class="star">★</span> Net Toplam'a eklenir &nbsp;·&nbsp; <span class="dia">◆</span> Tevkifatlı KDV'ye eklenir</p>
+
+        <div class="sec">GENEL TOPLAM</div>
+        <div class="fields gt3">
+          <div class="fld fillable" data-step="gy-5"><label>Net Toplam</label><div class="box"><span class="b">5</span><span class="v"><span data-v="gy-net">183.000</span> TL</span></div></div>
+          <div class="fld fillable" data-step="gy-6"><label>Tevkifatlı KDV</label><div class="box"><span class="b">6</span><span class="v"><span data-v="gy-kdvsum">6.000</span> TL</span></div></div>
+          <div class="fld fillable" data-step="gy-7"><label>Genel Toplam</label><div class="box"><span class="b">7</span><span class="v"><span data-v="gy-gtotal">189.000</span> TL</span></div></div>
+        </div>
+
+        <div class="sec"><span>ÖDEME PLANI</span><span class="pay">N: Nakit <b>H: Havale</b> <b>Ç: Çek</b> <b>KK: Kredi Kartı</b></span></div>
+        <div class="tscroll">
+          <div class="opgrid">
+            <span class="lb">Ödeme Şekli</span><span class="lb">Vade</span><span class="lb">Banka</span><span class="lb">Şube</span><span class="lb">No</span><span class="lb">Tutar</span><span class="lb">Toplam</span>
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="col-t">Adım adım <span>Bir adımın üstüne gelin, formdaki alanı gösterir</span></p>
+
+      <!-- ================= GA steps ================= -->
+      <ol class="steps" data-only="ga">
+        <li class="step" data-step="ga-1" tabindex="0">
+          <span class="b">1</span>
+          <div><h3>Fiyat / Lisans Kullanım Bedeli</h3><span class="where">Satın Alınan ARGE Ürünleri</span></div>
+          <div class="val"><span data-v="ga-arge">8.500</span> TL<span class="star">★</span></div>
+          <p>Satış fiyatının <strong>%85'i</strong>. Bu kaleme KDV eklenmez, vergiden muaftır.</p>
+          <div class="calcline"><span data-v="ga-sale">10.000</span> − <span data-v="ga-pz">1.500</span> = <b><span data-v="ga-arge">8.500</span> TL</b></div>
+        </li>
+        <li class="step info" data-step="ga-L" tabindex="0">
+          <span class="b">★</span>
+          <div><h3>Listeleme satırı</h3><span class="where">Satın Alınan Diğer Ürünler · formda basılı</span></div>
+          <div class="val">300 TL<span class="star">★</span></div>
+          <p>Formda hazır basılı gelir, bir şey yazılmaz: 250 TL + 50 TL KDV = 300 TL. Aylık Ödenecek Tutar'a eklenir.</p>
+        </li>
+        <li class="step" data-step="ga-2" tabindex="0">
+          <span class="b">2</span>
+          <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Hariç Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
+          <div class="val"><span data-v="ga-pz">1.500</span> TL</div>
+          <p>Satış fiyatının <strong>%15'i</strong>.</p>
+          <div class="calcline"><span data-v="ga-sale">10.000</span> × %15 = <b><span data-v="ga-pz">1.500</span> TL</b></div>
+        </li>
+        <li class="step" data-step="ga-3" tabindex="0">
+          <span class="b">3</span>
+          <div><h3>Pazarlama ve Organizasyon Bedeli — KDV</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
+          <div class="val"><span data-v="ga-kdv">300</span> TL</div>
+          <p>KDV hariç fiyatın <strong>%20'si</strong>, yani KDV tutarı.</p>
+          <div class="calcline"><span data-v="ga-pz">1.500</span> × %20 = <b><span data-v="ga-kdv">300</span> TL</b></div>
+        </li>
+        <li class="step" data-step="ga-4" tabindex="0">
+          <span class="b">4</span>
+          <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Dahil Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
+          <div class="val"><span data-v="ga-pzd">1.800</span> TL<span class="star">★</span></div>
+          <p>KDV hariç fiyat ile KDV'nin toplamı.</p>
+          <div class="calcline"><span data-v="ga-pz">1.500</span> + <span data-v="ga-kdv">300</span> = <b><span data-v="ga-pzd">1.800</span> TL</b></div>
+        </li>
+        <li class="step" data-step="ga-5" tabindex="0">
+          <span class="b">5</span>
+          <div><h3>Aylık Liste Fiyatı</h3><span class="where">Genel Toplam</span></div>
+          <div class="val"><span data-v="ga-list">51.424</span> TL</div>
+          <p>Satılan ürünün aylık liste fiyatı. Yukarıdaki <strong>Liste fiyatını seçin</strong> bölümünü açıp il, ilçe, kategori ve paketi seçince gelir; gerekirse elle değiştirilebilir.</p>
+        </li>
+        <li class="step" data-step="ga-6" tabindex="0">
+          <span class="b">6</span>
+          <div><h3>Aylık İndirim Tutarı</h3><span class="where">Genel Toplam</span></div>
+          <div class="val"><span data-v="ga-disc">41.424</span> TL</div>
+          <p>Liste fiyatı eksi satış fiyatı.</p>
+          <div class="calcline"><span data-v="ga-list">51.424</span> − <span data-v="ga-sale">10.000</span> = <b><span data-v="ga-disc">41.424</span> TL</b></div>
+        </li>
+        <li class="step" data-step="ga-7" tabindex="0">
+          <span class="b">7</span>
+          <div><h3>Kampanya İndirim Tutarı</h3><span class="where">Genel Toplam</span></div>
+          <div class="val muted">boş</div>
+          <p>Yalnızca <strong>ilk ay 1 TL</strong> gibi özel kampanyalarda yazılır. Diğer durumlarda boş bırakılır.</p>
+        </li>
+        <li class="step total" data-step="ga-8" tabindex="0">
+          <span class="b">8</span>
+          <div><h3>Aylık Ödenecek Tutar</h3><span class="where">Genel Toplam</span></div>
+          <div class="val"><span data-v="ga-total">10.600</span> TL</div>
+          <p>Yıldızlı (<span class="star">★</span>) KDV istisnalı ve KDV dahil tutarların toplamı.</p>
+          <div class="calcline"><span data-v="ga-arge">8.500</span> + 300 + <span data-v="ga-pzd">1.800</span> = <b><span data-v="ga-total">10.600</span> TL</b></div>
+        </li>
+      </ol>
+
+      <!-- ================= GY steps ================= -->
+      <ol class="steps" data-only="gy">
+        <li class="step" data-step="gy-1" tabindex="0">
+          <span class="b">1</span>
+          <div><h3>Fiyat / Lisans Kullanım Bedeli</h3><span class="where">Satın Alınan ARGE Ürünleri</span></div>
+          <div class="val"><span data-v="gy-arge">153.000</span> TL<span class="star">★</span></div>
+          <p>Sözleşme tutarının <strong>%85'i</strong>. Bu kaleme KDV eklenmez, vergiden muaftır.</p>
+          <div class="calcline"><span data-v="gy-sale">180.000</span> − <span data-v="gy-pz">27.000</span> = <b><span data-v="gy-arge">153.000</span> TL</b></div>
+        </li>
+        <li class="step info" data-step="gy-L" tabindex="0">
+          <span class="b">★</span>
+          <div><h3>Listeleme satırı</h3><span class="where">Satın Alınan Diğer Ürünler · formda basılı</span></div>
+          <div class="val">3.600 TL</div>
+          <p>Formda hazır basılı gelir, bir şey yazılmaz: 3.000 TL + 600 TL KDV = 3.600 TL. 3.000 TL <span class="star">★</span> Net Toplam'a, 600 TL <span class="dia">◆</span> Tevkifatlı KDV'ye eklenir.</p>
+        </li>
+        <li class="step" data-step="gy-2" tabindex="0">
+          <span class="b">2</span>
+          <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Hariç Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
+          <div class="val"><span data-v="gy-pz">27.000</span> TL<span class="star">★</span></div>
+          <p>Sözleşme tutarının <strong>%15'i</strong>.</p>
+          <div class="calcline"><span data-v="gy-sale">180.000</span> × %15 = <b><span data-v="gy-pz">27.000</span> TL</b></div>
+        </li>
+        <li class="step" data-step="gy-3" tabindex="0">
+          <span class="b">3</span>
+          <div><h3>Pazarlama ve Organizasyon Bedeli — KDV</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
+          <div class="val"><span data-v="gy-kdv">5.400</span> TL<span class="dia">◆</span></div>
+          <p>KDV hariç fiyatın <strong>%20'si</strong>, yani KDV tutarı.</p>
+          <div class="calcline"><span data-v="gy-pz">27.000</span> × %20 = <b><span data-v="gy-kdv">5.400</span> TL</b></div>
+        </li>
+        <li class="step" data-step="gy-4" tabindex="0">
+          <span class="b">4</span>
+          <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Dahil Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
+          <div class="val"><span data-v="gy-pzd">32.400</span> TL</div>
+          <p>KDV hariç fiyat ile KDV'nin toplamı.</p>
+          <div class="calcline"><span data-v="gy-pz">27.000</span> + <span data-v="gy-kdv">5.400</span> = <b><span data-v="gy-pzd">32.400</span> TL</b></div>
+        </li>
+        <li class="step" data-step="gy-5" tabindex="0">
+          <span class="b">5</span>
+          <div><h3>Net Toplam</h3><span class="where">Genel Toplam</span></div>
+          <div class="val"><span data-v="gy-net">183.000</span> TL</div>
+          <p>Yıldızlı (<span class="star">★</span>), KDV istisnalı + KDV hariç tutarların toplamı.</p>
+          <div class="calcline"><span data-v="gy-arge">153.000</span> + 3.000 + <span data-v="gy-pz">27.000</span> = <b><span data-v="gy-net">183.000</span> TL</b></div>
+        </li>
+        <li class="step" data-step="gy-6" tabindex="0">
+          <span class="b">6</span>
+          <div><h3>Tevkifatlı KDV</h3><span class="where">Genel Toplam</span></div>
+          <div class="val"><span data-v="gy-kdvsum">6.000</span> TL</div>
+          <p>Elmaslı (<span class="dia">◆</span>) KDV tutarlarının toplamı.</p>
+          <div class="calcline">600 + <span data-v="gy-kdv">5.400</span> = <b><span data-v="gy-kdvsum">6.000</span> TL</b></div>
+        </li>
+        <li class="step total" data-step="gy-7" tabindex="0">
+          <span class="b">7</span>
+          <div><h3>Genel Toplam</h3><span class="where">Genel Toplam</span></div>
+          <div class="val"><span data-v="gy-gtotal">189.000</span> TL</div>
+          <p>Yandaki iki hücrenin toplamı: Net Toplam + Tevkifatlı KDV.</p>
+          <div class="calcline"><span data-v="gy-net">183.000</span> + <span data-v="gy-kdvsum">6.000</span> = <b><span data-v="gy-gtotal">189.000</span> TL</b></div>
+        </li>
+      </ol>
+    </div>
+  </main>
+
+  <p class="note">Kaynak: ARGE ve Üyelik Sözleşmesi GA ve GY formları · Liste fiyatları: Eylül 2026 Winner rate card (16.09.2026) · 21.09.2026</p>
+</div>
+
+<script>
+(function () {
+  // Rate card data, injected by tools/build_sozlesme_kilavuzu.py
+  var C = {"prices":{"İstanbul":{"Kır Düğünü":[51424,71994,107990],"Tarihi Mekanlar":[51424,71994,107990],"Düğün Salonları":[41139,57595,86392],"Nikah Salonları":[30854,43196,64794],"Balo ve Davet Salonları":[48852,68394,102590],"Oteller":[48852,68394,102590],"Sosyal Tesisler":[28049,39269,58904],"Kına ve Bekarlığa Veda":[28049,39269,58904],"Söz ve Nişan Mekanları":[28049,39269,58904],"Nikah Sonrası Yemeği":[28049,39269,58904],"Tekne Düğünü":[28049,39269,58904],"After Party":[18700,26179,39269]},"Ankara":{"Kır Düğünü":[41139,57595,86392],"Tarihi Mekanlar":[41139,57595,86392],"Düğün Salonları":[32911,46076,69114],"Nikah Salonları":[24684,34557,51835],"Balo ve Davet Salonları":[39082,54715,82072],"Oteller":[39082,54715,82072],"Sosyal Tesisler":[22440,31415,47123],"Kına ve Bekarlığa Veda":[22440,31415,47123],"Söz ve Nişan Mekanları":[22440,31415,47123],"Nikah Sonrası Yemeği":[22440,31415,47123],"Tekne Düğünü":[22440,31415,47123],"After Party":[14960,20944,31415]},"İzmir":{"Kır Düğünü":[38567,53995,80992],"Tarihi Mekanlar":[38567,53995,80992],"Düğün Salonları":[30854,43196,64794],"Nikah Salonları":[23142,32396,48595],"Balo ve Davet Salonları":[36639,51295,76943],"Oteller":[36639,51295,76943],"Sosyal Tesisler":[21038,29451,44177],"Kına ve Bekarlığa Veda":[21038,29451,44177],"Söz ve Nişan Mekanları":[21038,29451,44177],"Nikah Sonrası Yemeği":[21038,29451,44177],"Tekne Düğünü":[21038,29451,44177],"After Party":[14025,19635,29451]},"Bursa":{"Kır Düğünü":[25713,35996,53995],"Tarihi Mekanlar":[25713,35996,53995],"Düğün Salonları":[20570,28797,43196],"Nikah Salonları":[19285,26996,40497],"Balo ve Davet Salonları":[24428,34196,51295],"Oteller":[24428,34196,51295],"Sosyal Tesisler":[17532,24542,36815],"Kına ve Bekarlığa Veda":[17532,24542,36815],"Söz ve Nişan Mekanları":[17532,24542,36815],"Nikah Sonrası Yemeği":[17532,24542,36815],"Tekne Düğünü":[17532,24542,36815],"After Party":[11688,16363,24542]},"Adana - Antalya - Mersin":{"Kır Düğünü":[23142,32396,48595],"Tarihi Mekanlar":[23142,32396,48595],"Düğün Salonları":[18513,25917,38876],"Nikah Salonları":[17356,24298,36446],"Balo ve Davet Salonları":[21985,30777,46166],"Oteller":[21985,30777,46166],"Sosyal Tesisler":[15778,22089,33133],"Kına ve Bekarlığa Veda":[15778,22089,33133],"Söz ve Nişan Mekanları":[15778,22089,33133],"Nikah Sonrası Yemeği":[15778,22089,33133],"Tekne Düğünü":[15778,22089,33133],"After Party":[11571,16199,24298]},"Uydu İller":{"Kır Düğünü":[20570,28797,43196],"Tarihi Mekanlar":[20570,28797,43196],"Düğün Salonları":[16456,23038,34557],"Nikah Salonları":[15428,21599,32396],"Balo ve Davet Salonları":[19542,27357,41036],"Oteller":[19542,27357,41036],"Sosyal Tesisler":[14025,19635,29451],"Kına ve Bekarlığa Veda":[14025,19635,29451],"Söz ve Nişan Mekanları":[14025,19635,29451],"Nikah Sonrası Yemeği":[14025,19635,29451],"Tekne Düğünü":[14025,19635,29451],"After Party":[11220,15708,23561]}},"welcome":null,"categories":["Kır Düğünü","Tarihi Mekanlar","Düğün Salonları","Nikah Salonları","Balo ve Davet Salonları","Oteller","Sosyal Tesisler","Kına ve Bekarlığa Veda","Söz ve Nişan Mekanları","Nikah Sonrası Yemeği","Tekne Düğünü","After Party"],"regionLabel":{"İstanbul":"İstanbul","Ankara":"Ankara","İzmir":"İzmir","Bursa":"Bursa","Adana - Antalya - Mersin":"Adana–Antalya–Mersin","Uydu İller":"Uydu İller"},"provinces":["İstanbul","Ankara","İzmir","Bursa","Antalya","Adana","Mersin","Kocaeli","Sakarya","Eskişehir","Kayseri","Konya","Nevşehir","Samsun","Aydın","Manisa","Yalova","Balıkesir","Gaziantep","Hatay","Muğla","Denizli","Afyon","Ağrı","Amasya","Ardahan","Artvin","Bartın","Batman","Bayburt","Bilecik","Bingöl","Bitlis","Burdur","Düzce","Elazığ","Giresun","Kahramanmaraş","Kastamonu","Kırşehir","Kilis","Kütahya","Mardin","Niğde","Ordu","Osmaniye","Rize","Sinop","Şanlıurfa","Tokat","Van","Zonguldak","Çorum","Sivas","Trabzon","Erzurum","Isparta","Uşak","Malatya","Diyarbakır","Bolu","Adıyaman","Aksaray","Çankırı","Erzincan","Gümüşhane","Hakkari","Iğdır","Karabük","Karaman","Kars","Kırıkkale","Muş","Siirt","Şırnak","Tunceli","Yozgat","Çanakkale","Tekirdağ","Kırklareli","Edirne"],"mainCities":["İstanbul","Ankara","İzmir","Bursa","Antalya","Adana","Mersin"],"cityRegion":{"İstanbul":"İstanbul","Ankara":"Ankara","İzmir":"İzmir","Bursa":"Bursa","Adana":"Adana - Antalya - Mersin","Antalya":"Adana - Antalya - Mersin","Mersin":"Adana - Antalya - Mersin"},"tasra":{"İstanbul":[{"name":"Arnavutköy","side":"Avrupa"},{"name":"Çatalca","side":"Avrupa"},{"name":"Silivri","side":"Avrupa"},{"name":"Sancaktepe","side":"Anadolu"},{"name":"Sultanbeyli","side":"Anadolu"},{"name":"Şile","side":"Anadolu"}],"Ankara":[{"name":"Çubuk"},{"name":"Polatlı"},{"name":"Kahramankazan"},{"name":"Şereflikoçhisar"},{"name":"Haymana"},{"name":"Elmadağ"},{"name":"Akyurt"},{"name":"Ayaş"},{"name":"Kızılcahamam"},{"name":"Beypazarı"},{"name":"Evren"}],"Bursa":[{"name":"Karacabey"},{"name":"Mudanya"},{"name":"Gemlik"},{"name":"İznik"},{"name":"Orhangazi"},{"name":"Kestel"},{"name":"Yenişehir"},{"name":"Gürsu"},{"name":"Büyükorhan"},{"name":"Mustafakemalpaşa"},{"name":"Harmancık"},{"name":"İnegöl"},{"name":"Keles"},{"name":"Orhaneli"}],"İzmir":[{"name":"Aliağa"},{"name":"Torbalı"},{"name":"Bayındır"},{"name":"Bergama"},{"name":"Beydağ"},{"name":"Kemalpaşa"},{"name":"Ödemiş"},{"name":"Tire"},{"name":"Kiraz"},{"name":"Kınık"},{"name":"Selçuk"},{"name":"Karaburun"},{"name":"Menderes"},{"name":"Seferihisar","except":"Oteller"},{"name":"Dikili"},{"name":"Foça"},{"name":"Urla"},{"name":"Menemen"}],"Antalya":[{"name":"Kaş"},{"name":"Finike"},{"name":"Demre"},{"name":"Serik"},{"name":"Aksu"},{"name":"Manavgat"},{"name":"Alanya"},{"name":"Elmalı"},{"name":"Gazipaşa"},{"name":"Gündoğmuş"},{"name":"İbradı"},{"name":"Korkuteli"},{"name":"Kumluca"}],"Adana":[{"name":"Ceyhan"},{"name":"Feke"},{"name":"İmamoğlu"},{"name":"Karaisalı"},{"name":"Karataş"},{"name":"Kozan"},{"name":"Pozantı"},{"name":"Saimbeyli"},{"name":"Tufanbeyli"},{"name":"Yumurtalık"},{"name":"Sarıçam"}],"Mersin":[{"name":"Tarsus"},{"name":"Anamur"},{"name":"Aydıncık"},{"name":"Bozyazı"},{"name":"Çamlıyayla"},{"name":"Erdemli"},{"name":"Gülnar"},{"name":"Mut"},{"name":"Silifke"}]}};
+
+  var WINNER = ['2X', '4X', '6X'];
+  var PKG_LABEL = { '2X': 'Winner 2X', '4X': 'Winner 4X', '6X': 'Winner 6X', WELCOME: 'Welcome Paketi' };
+  var DEF = { ga: { sale: '10.000', il: 'İstanbul', ilce: '', kat: 'Kır Düğünü', pkt: '2X' }, gy: { sale: '180.000' } };
+  var GA_LIST = { net: 25000, kdv: 5000 };      // Listeleme on GA, kuruş
+  var GY_LIST = { net: 300000, kdv: 60000 };    // Listeleme on GY, kuruş
+
+  var $ = function (id) { return document.getElementById(id); };
+  var gaSale = $('ga-sale'), gaList = $('ga-list'), gySale = $('gy-sale');
+  var pIl = $('p-il'), pIlce = $('p-ilce'), pKat = $('p-kat'), pPkt = $('p-pkt'), pCap = $('p-cap'), pSum = $('p-sum');
+  var gaListHint = $('ga-list-hint');
+  var mode = 'ga', manualList = false, cardPrice = null;
+
+  // ---------- numbers ----------
+  // "10.000", "10000", "10.000,50" -> kuruş. Dots are thousand separators.
+  function parse(s) {
+    s = String(s || '').replace(/\s|TL|₺/gi, '');
+    if (!/\d/.test(s)) return null;
+    s = s.replace(/\./g, '').replace(',', '.');
+    var v = Number(s);
+    return isFinite(v) && v >= 0 ? Math.round(v * 100) : null;
+  }
+  function fmt(k) {
+    if (k == null) return '—';
+    var neg = k < 0; k = Math.abs(k);
+    var s = (k / 100).toLocaleString('tr-TR', { minimumFractionDigits: k % 100 ? 2 : 0, maximumFractionDigits: 2 });
+    return (neg ? '−' : '') + s;
+  }
+  function put(key, k) {
+    var els = document.querySelectorAll('[data-v="' + key + '"]');
+    for (var i = 0; i < els.length; i++) els[i].textContent = fmt(k);
+  }
+  function split(S) {
+    if (S == null || S <= 0) return null;
+    var pz = Math.round(S * 15 / 100);      // %15 pazarlama, KDV hariç
+    var kdv = Math.round(pz * 20 / 100);    // pazarlama KDV'si
+    return { sale: S, pz: pz, arge: S - pz, kdv: kdv, pzd: pz + kdv };
+  }
+
+  // ---------- list price picker ----------
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function fillProvinces() {
+    var coll = new Intl.Collator('tr');
+    var g1 = el('optgroup', { label: 'Ana iller' }), g2 = el('optgroup', { label: 'Diğer iller · Uydu İller fiyatı' });
+    C.mainCities.forEach(function (p) { g1.appendChild(el('option', { value: p }, p)); });
+    C.provinces.filter(function (p) { return C.mainCities.indexOf(p) < 0; }).sort(coll.compare)
+      .forEach(function (p) { g2.appendChild(el('option', { value: p }, p)); });
+    pIl.appendChild(g1); pIl.appendChild(g2);
+    C.categories.forEach(function (c) { pKat.appendChild(el('option', { value: c }, c)); });
+    WINNER.concat(C.welcome ? ['WELCOME'] : []).forEach(function (p) { pPkt.appendChild(el('option', { value: p }, PKG_LABEL[p])); });
+  }
+  function fillDistricts() {
+    var list = C.tasra[pIl.value] || [];
+    pIlce.innerHTML = '';
+    if (!list.length) {
+      pIlce.appendChild(el('option', { value: '' }, 'Tüm ilçeler'));
+      pIlce.disabled = true;
+      return;
+    }
+    pIlce.disabled = false;
+    pIlce.appendChild(el('option', { value: '' }, 'Merkez ilçeler'));
+    var groups = {};
+    list.forEach(function (d) {
+      var label = d.side ? d.side + ' yakası taşra ilçeleri' : 'Taşra ilçeler';
+      if (!groups[label]) { groups[label] = el('optgroup', { label: label }); pIlce.appendChild(groups[label]); }
+      groups[label].appendChild(el('option', { value: d.name }, d.name + (d.except ? ' (' + d.except.toLowerCase() + ' hariç)' : '')));
+    });
+  }
+  function resolve() {
+    var il = pIl.value, ilce = pIlce.value, kat = pKat.value, pkt = pPkt.value;
+    var r = { kat: kat, pkt: pkt, label: PKG_LABEL[pkt], why: '', tasra: false, sale: null };
+    var base = C.cityRegion[il] || 'Uydu İller';
+    var d = ilce ? (C.tasra[il] || []).filter(function (x) { return x.name === ilce; })[0] : null;
+    r.tasra = !!d && d.except !== kat;
+    if (!C.cityRegion[il]) r.why = il + ' uydu il';
+    else if (r.tasra) r.why = ilce + ' taşra ilçe';
+    else if (d) r.why = ilce + ': ' + kat.toLowerCase() + ' ' + C.regionLabel[base] + ' fiyatından';
+    if (pkt === 'WELCOME') {
+      // Welcome has one list price per region; a taşra ilçe only gets its own sale price.
+      var w = C.welcome[base] && C.welcome[base][kat];
+      r.region = base;
+      r.price = w ? w.list : null;
+      r.sale = w ? (r.tasra ? w.tasraSale : w.sale) : null;
+    } else {
+      r.region = r.tasra ? 'Uydu İller' : base;   // Winner in a taşra ilçe = Uydu İller row
+      var row = C.prices[r.region] && C.prices[r.region][kat];
+      r.price = row ? row[WINNER.indexOf(pkt)] : null;
+    }
+    return r;
+  }
+  function where(r) {
+    return C.regionLabel[r.region] + (r.tasra ? ' (' + pIlce.value + ')' : '') + ' · ' + r.kat + ' · ' + r.label;
+  }
+  function applyPicker() {
+    var r = resolve();
+    cardPrice = r.price == null ? null : r.price * 100;
+    var price = r.price == null ? 'kartta fiyat yok' : fmt(cardPrice) + ' TL';
+    var t = function (s) { pCap.appendChild(document.createTextNode(s)); };
+    var b = function (s) { pCap.appendChild(el('b', {}, s)); };
+    pCap.innerHTML = '';
+    t('Fiyat satırı: '); b(C.regionLabel[r.region]);
+    if (r.why) t(' (' + r.why + ')');
+    t(' · ' + r.kat + ' · ' + r.label + ' = '); b(price);
+    if (r.pkt === 'WELCOME' && r.sale != null) {
+      t(' · Welcome satış fiyatı' + (r.tasra ? ' (taşra ilçe)' : '') + ': '); b(fmt(r.sale * 100) + ' TL');
+    }
+    if (r.tasra && r.pkt !== 'WELCOME') t(' · Taşra ilçelerde Winner için Uydu İller fiyatı uygulanır.');
+    pSum.innerHTML = '';
+    pSum.appendChild(document.createTextNode(where(r) + ' = '));
+    pSum.appendChild(el('b', {}, price));
+    manualList = false;
+    gaList.value = cardPrice == null ? '' : fmt(cardPrice);
+    update();
+  }
+  function setPicker(d) {
+    pIl.value = d.il; fillDistricts(); pIlce.value = d.ilce; pKat.value = d.kat; pPkt.value = d.pkt;
+  }
+
+  // ---------- render ----------
+  function seg(id, k) { $(id).style.flexGrow = k > 0 ? k : 0; }
+  function hint(node, text, warn) { node.textContent = text; node.classList.toggle('warn', !!warn); }
+
+  function update() {
+    // Aylık (GA)
+    var a = split(parse(gaSale.value)), L = parse(gaList.value);
+    var gaTotal = a ? a.arge + GA_LIST.net + GA_LIST.kdv + a.pzd : null;
+    var gaDisc = a && L != null ? L - a.sale : null;
+    put('ga-sale', a && a.sale); put('ga-arge', a && a.arge); put('ga-pz', a && a.pz); put('ga-kdv', a && a.kdv);
+    put('ga-pzd', a && a.pzd); put('ga-list', L); put('ga-disc', gaDisc); put('ga-total', gaTotal);
+
+    // Yıllık (GY)
+    var y = split(parse(gySale.value));
+    var gyNet = y ? y.arge + GY_LIST.net + y.pz : null;
+    var gyKdv = y ? GY_LIST.kdv + y.kdv : null;
+    put('gy-sale', y && y.sale); put('gy-arge', y && y.arge); put('gy-pz', y && y.pz); put('gy-kdv', y && y.kdv);
+    put('gy-pzd', y && y.pzd); put('gy-net', gyNet); put('gy-kdvsum', gyKdv); put('gy-gtotal', y ? gyNet + gyKdv : null);
+
+    // Bar follows the visible mode
+    var s = mode === 'ga' ? a : y, lst = mode === 'ga' ? GA_LIST : GY_LIST;
+    seg('seg-arge', s && s.arge); seg('seg-pz', s && s.pz); seg('seg-kdv', s && s.kdv); seg('seg-lst', s ? lst.net + lst.kdv : 0);
+    put('bar-arge', s && s.arge); put('bar-pz', s && s.pz); put('bar-kdv', s && s.kdv); put('bar-lst', lst.net + lst.kdv);
+
+    // Hints
+    [[gaSale, $('ga-sale-hint'), 'Firmayla anlaşılan aylık tutar'], [gySale, $('gy-sale-hint'), 'Yıllık sözleşmenin toplam tutarı']]
+      .forEach(function (x) {
+        var bad = x[0].value.trim() && !(parse(x[0].value) > 0);
+        hint(x[1], bad ? 'Geçerli bir tutar girin' : x[2], bad);
+      });
+    if (gaDisc != null && gaDisc < 0) {
+      hint(gaListHint, 'Liste fiyatı satış fiyatından düşük olamaz', true);
+    } else if (manualList && cardPrice != null && L !== cardPrice) {
+      hint(gaListHint, 'Elle girildi · kartta ' + fmt(cardPrice) + ' TL · ', false);
+      var b = el('button', { type: 'button', 'class': 'link' }, 'karta dön');
+      b.addEventListener('click', applyPicker);
+      gaListHint.appendChild(b);
+    } else {
+      hint(gaListHint, where(resolve()), false);
+    }
+  }
+
+  function tidy(inp) { var k = parse(inp.value); if (k != null) inp.value = fmt(k); }
+  [gaSale, gaList, gySale].forEach(function (inp) {
+    inp.addEventListener('input', function () { if (inp === gaList) manualList = true; update(); });
+    inp.addEventListener('blur', function () { tidy(inp); update(); });
+    inp.addEventListener('focus', function () { inp.select(); });
+    inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') inp.blur(); });
+  });
+  pIl.addEventListener('change', function () { fillDistricts(); applyPicker(); });
+  [pIlce, pKat, pPkt].forEach(function (s) { s.addEventListener('change', applyPicker); });
+
+  $('reset').addEventListener('click', function () {
+    if (mode === 'ga') { gaSale.value = DEF.ga.sale; setPicker(DEF.ga); applyPicker(); }
+    else { gySale.value = DEF.gy.sale; update(); }
+  });
+
+  // ---------- mode switch ----------
+  function setMode(m, push) {
+    mode = m === 'gy' ? 'gy' : 'ga';
+    document.body.setAttribute('data-mode', mode);
+    var btns = document.querySelectorAll('[data-set-mode]');
+    for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-pressed', btns[i].getAttribute('data-set-mode') === mode ? 'true' : 'false');
+    if (push && history.replaceState) history.replaceState(null, '', mode === 'gy' ? '#yillik' : '#aylik');
+    update();
+  }
+  var sw = document.querySelectorAll('[data-set-mode]');
+  for (var i = 0; i < sw.length; i++) sw[i].addEventListener('click', function () { setMode(this.getAttribute('data-set-mode'), true); });
+
+  // ---------- link each form field with its step card ----------
+  var linked = document.querySelectorAll('[data-step]');
+  // Totals: pointing at one also marks, dashed, the form amounts it adds up.
+  var SUMS = {
+    'ga-4': ['ga-2', 'ga-3'],
+    'ga-8': ['ga-1', 'ga-lst', 'ga-4'],
+    'gy-4': ['gy-2', 'gy-3'],
+    'gy-5': ['gy-1', 'gy-lst-net', 'gy-2'],
+    'gy-6': ['gy-lst-kdv', 'gy-3'],
+    'gy-7': ['gy-5', 'gy-6']
+  };
+  function mark(step, on) {
+    for (var i = 0; i < linked.length; i++)
+      if (linked[i].getAttribute('data-step') === step) linked[i].classList.toggle('hl', on);
+    (SUMS[step] || []).forEach(function (id) {
+      var els = document.querySelectorAll('.paper [data-step="' + id + '"], .paper [data-part="' + id + '"]');
+      for (var k = 0; k < els.length; k++) els[k].classList.toggle('add', on);
+    });
+  }
+  var flashTimer;
+  for (var j = 0; j < linked.length; j++) {
+    (function (node) {
+      var step = node.getAttribute('data-step');
+      node.addEventListener('mouseenter', function () { mark(step, true); });
+      node.addEventListener('mouseleave', function () { mark(step, false); });
+      node.addEventListener('focus', function () { mark(step, true); });
+      node.addEventListener('blur', function () { mark(step, false); });
+      node.addEventListener('click', function () {
+        // Jump to the partner (card <-> field) when it is off screen, e.g. on a phone.
+        var partner = document.querySelector(node.classList.contains('step')
+          ? '.paper [data-step="' + step + '"]' : '.step[data-step="' + step + '"]');
+        if (!partner) return;
+        var r = partner.getBoundingClientRect();
+        if (r.top < 0 || r.bottom > window.innerHeight) partner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        clearTimeout(flashTimer);
+        mark(step, true);
+        flashTimer = setTimeout(function () { mark(step, false); }, 1400);
+      });
+    })(linked[j]);
+  }
+
+  fillProvinces();
+  setPicker(DEF.ga);
+  applyPicker();
+  setMode(/yillik|gy/i.test(location.hash) ? 'gy' : 'ga', false);
+})();
+</script>
+</body>
+</html>
