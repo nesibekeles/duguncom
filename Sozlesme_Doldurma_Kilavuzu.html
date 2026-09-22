@@ -341,8 +341,8 @@
     <p class="eyebrow">Yeni KDV kuralı</p>
     <h1><span data-only="ga">Aylık sözleşme (GA) nasıl doldurulur?</span><span data-only="gy">Yıllık sözleşme (GY) nasıl doldurulur?</span></h1>
     <p class="lead">
-      Satış tutarı sözleşmede ikiye bölünür: <strong>%85'i KDV'siz lisans bedeli</strong>,
-      <strong>%15'i KDV'li pazarlama bedeli</strong> olarak yazılır.
+      <span data-only="ga">Satış fiyatından önce listeleme bedeli (KDV hariç 250 TL) düşülür.</span><span data-only="gy">Sözleşme tutarından önce listeleme bedeli (KDV hariç 3.000 TL) düşülür.</span>
+      Kalan tutarın <strong>%85'i KDV'siz lisans bedeli</strong>, <strong>%15'i KDV'li pazarlama bedeli</strong> olarak yazılır.
     </p>
     <p class="legal">4691 sayılı kanun kapsamında Pazarlama ve Organizasyon Hizmeti bedeli, anılan istisna kapsamında olmadığından genel hükümler çerçevesinde KDV'ye tabidir; yürürlükteki oran üzerinden hesaplanan KDV, bu bedellere ilave edilerek müşteriden tahsil edilir.</p>
   </header>
@@ -384,8 +384,8 @@
       </div>
       <div class="result" aria-live="polite">
         <span class="lbl">Aylık Ödenecek Tutar</span>
-        <span class="big tn"><span data-v="ga-total">10.600</span> TL</span>
-        <small>= satış fiyatı × 1,03 + 300 TL</small>
+        <span class="big tn"><span data-v="ga-total">10.342,50</span> TL</span>
+        <small>= (satış fiyatı − 250) × 1,03 + 300 TL</small>
       </div>
     </div>
 
@@ -397,8 +397,8 @@
       </div>
       <div class="result" aria-live="polite">
         <span class="lbl">Genel Toplam</span>
-        <span class="big tn"><span data-v="gy-gtotal">189.000</span> TL</span>
-        <small>= sözleşme tutarı × 1,03 + 3.600 TL</small>
+        <span class="big tn"><span data-v="gy-gtotal">185.910</span> TL</span>
+        <small>= (sözleşme tutarı − 3.000) × 1,03 + 3.600 TL</small>
       </div>
     </div>
 
@@ -408,10 +408,10 @@
         <i class="c-arge" id="seg-arge"></i><i class="c-pz" id="seg-pz"></i><i class="c-kdv" id="seg-kdv"></i><i class="c-lst" id="seg-lst"></i>
       </div>
       <div class="legend tn">
-        <span><i class="dot c-arge"></i>Lisans bedeli (KDV yok) <b><span data-v="bar-arge">8.500</span> TL</b></span>
-        <span><i class="dot c-pz"></i>Pazarlama bedeli <b><span data-v="bar-pz">1.500</span> TL</b></span>
-        <span><i class="dot c-kdv"></i>Pazarlama KDV'si <b><span data-v="bar-kdv">300</span> TL</b></span>
-        <span><i class="dot c-lst"></i>Listeleme (KDV dahil) <b><span data-v="bar-lst">300</span> TL</b></span>
+        <span><i class="dot c-arge"></i>Lisans bedeli (KDV yok) <b><span data-v="bar-arge">8.287,50</span> TL</b></span>
+        <span><i class="dot c-pz"></i>Pazarlama bedeli <b><span data-v="bar-pz">1.462,50</span> TL</b></span>
+        <span><i class="dot c-kdv"></i>Pazarlama KDV'si <b><span data-v="bar-kdv">292,50</span> TL</b></span>
+        <span><i class="dot c-lst"></i>Listeleme (KDV dahil) <b><span data-v="bar-lst">300,00</span> TL</b></span>
       </div>
     </div>
   </section>
@@ -435,7 +435,7 @@
             <thead><tr><th>Ürün Adı</th><th>Firma Faaliyet Alanı</th><th class="n">Adet</th><th>Fiyat / Lisans Kullanım Bedeli *</th></tr></thead>
             <tbody><tr>
               <td>Gen AI Tabanlı Müşteri İlişkileri Çözümü</td><td>Mekan</td><td>1</td>
-              <td class="fill" data-step="ga-1"><div class="cell"><span class="b">1</span><span class="v"><span data-v="ga-arge">8.500</span> TL</span><span class="star">★</span></div></td>
+              <td class="fill" data-step="ga-1"><div class="cell"><span class="b">1</span><span class="v"><span data-v="ga-arge">8.287,50</span> TL</span><span class="star">★</span></div></td>
             </tr></tbody>
           </table>
         </div>
@@ -452,9 +452,9 @@
               </tr>
               <tr>
                 <td></td><td>Pazarlama ve Organizasyon (Seri Üretim) Bedeli</td><td></td>
-                <td class="fill" data-step="ga-2"><div class="cell"><span class="b">2</span><span class="v"><span data-v="ga-pz">1.500</span> TL</span></div></td>
-                <td class="fill" data-step="ga-3"><div class="cell"><span class="b">3</span><span class="v"><span data-v="ga-kdv">300</span> TL</span></div></td>
-                <td class="fill" data-step="ga-4"><div class="cell"><span class="b">4</span><span class="v"><span data-v="ga-pzd">1.800</span> TL</span><span class="star">★</span></div></td>
+                <td class="fill" data-step="ga-2"><div class="cell"><span class="b">2</span><span class="v"><span data-v="ga-pz">1.462,50</span> TL</span></div></td>
+                <td class="fill" data-step="ga-3"><div class="cell"><span class="b">3</span><span class="v"><span data-v="ga-kdv">292,50</span> TL</span></div></td>
+                <td class="fill" data-step="ga-4"><div class="cell"><span class="b">4</span><span class="v"><span data-v="ga-pzd">1.755,00</span> TL</span><span class="star">★</span></div></td>
               </tr>
             </tbody>
           </table>
@@ -463,10 +463,10 @@
 
         <div class="sec">GENEL TOPLAM</div>
         <div class="fields gt">
-          <div class="fld fillable" data-step="ga-5"><label>Aylık Liste Fiyatı</label><div class="box"><span class="b">5</span><span class="v"><span data-v="ga-list">51.424</span> TL</span></div></div>
-          <div class="fld fillable" data-step="ga-6"><label>Aylık İndirim Tutarı</label><div class="box"><span class="b">6</span><span class="v"><span data-v="ga-disc">41.424</span> TL</span></div></div>
+          <div class="fld fillable" data-step="ga-5"><label>Aylık Liste Fiyatı</label><div class="box"><span class="b">5</span><span class="v"><span data-v="ga-list">51.424,00</span> TL</span></div></div>
+          <div class="fld fillable" data-step="ga-6"><label>Aylık İndirim Tutarı</label><div class="box"><span class="b">6</span><span class="v"><span data-v="ga-disc">41.424,00</span> TL</span></div></div>
           <div class="fld fillable" data-step="ga-7"><label>Kampanya İndirim Tutarı</label><div class="box"><span class="b">7</span><span class="empty">boş</span></div></div>
-          <div class="fld fillable" data-step="ga-8"><label>Aylık Ödenecek Tutar</label><div class="box"><span class="b">8</span><span class="v"><span data-v="ga-total">10.600</span> TL</span></div></div>
+          <div class="fld fillable" data-step="ga-8"><label>Aylık Ödenecek Tutar</label><div class="box"><span class="b">8</span><span class="v"><span data-v="ga-total">10.342,50</span> TL</span></div></div>
         </div>
         <p class="fine">Aylık katılım bedeli 1 (bir) aylık liste fiyatı kadardır. 12 ay taahhütlü üyelik karşılığında katılım bedeli alınmayacaktır. Katılım bedeli devam eden sözleşmelerde güncellenir.</p>
 
@@ -493,7 +493,7 @@
             <thead><tr><th>Ürün Adı</th><th>Firma Faaliyet Alanı</th><th>Sözleşme Süresi</th><th class="n">Adet</th><th>Fiyat / Lisans Kullanım Bedeli *</th></tr></thead>
             <tbody><tr>
               <td>Gen AI Tabanlı Müşteri İlişkileri Çözümü</td><td>Mekan</td><td>1 Yıl</td><td>1</td>
-              <td class="fill" data-step="gy-1"><div class="cell"><span class="b">1</span><span class="v"><span data-v="gy-arge">153.000</span> TL</span><span class="star">★</span></div></td>
+              <td class="fill" data-step="gy-1"><div class="cell"><span class="b">1</span><span class="v"><span data-v="gy-arge">150.450</span> TL</span><span class="star">★</span></div></td>
             </tr></tbody>
           </table>
         </div>
@@ -512,9 +512,9 @@
               </tr>
               <tr>
                 <td></td><td>Pazarlama ve Organizasyon (Seri Üretim) Bedeli</td><td></td>
-                <td class="fill" data-step="gy-2"><div class="cell"><span class="b">2</span><span class="v"><span data-v="gy-pz">27.000</span> TL</span><span class="star">★</span></div></td>
-                <td class="fill" data-step="gy-3"><div class="cell"><span class="b">3</span><span class="v"><span data-v="gy-kdv">5.400</span> TL</span><span class="dia">◆</span></div></td>
-                <td class="fill" data-step="gy-4"><div class="cell"><span class="b">4</span><span class="v"><span data-v="gy-pzd">32.400</span> TL</span></div></td>
+                <td class="fill" data-step="gy-2"><div class="cell"><span class="b">2</span><span class="v"><span data-v="gy-pz">26.550</span> TL</span><span class="star">★</span></div></td>
+                <td class="fill" data-step="gy-3"><div class="cell"><span class="b">3</span><span class="v"><span data-v="gy-kdv">5.310</span> TL</span><span class="dia">◆</span></div></td>
+                <td class="fill" data-step="gy-4"><div class="cell"><span class="b">4</span><span class="v"><span data-v="gy-pzd">31.860</span> TL</span></div></td>
               </tr>
             </tbody>
           </table>
@@ -523,9 +523,9 @@
 
         <div class="sec">GENEL TOPLAM</div>
         <div class="fields gt3">
-          <div class="fld fillable" data-step="gy-5"><label>Net Toplam</label><div class="box"><span class="b">5</span><span class="v"><span data-v="gy-net">183.000</span> TL</span></div></div>
-          <div class="fld fillable" data-step="gy-6"><label>Tevkifatlı KDV</label><div class="box"><span class="b">6</span><span class="v"><span data-v="gy-kdvsum">6.000</span> TL</span></div></div>
-          <div class="fld fillable" data-step="gy-7"><label>Genel Toplam</label><div class="box"><span class="b">7</span><span class="v"><span data-v="gy-gtotal">189.000</span> TL</span></div></div>
+          <div class="fld fillable" data-step="gy-5"><label>Net Toplam</label><div class="box"><span class="b">5</span><span class="v"><span data-v="gy-net">180.000</span> TL</span></div></div>
+          <div class="fld fillable" data-step="gy-6"><label>Tevkifatlı KDV</label><div class="box"><span class="b">6</span><span class="v"><span data-v="gy-kdvsum">5.910</span> TL</span></div></div>
+          <div class="fld fillable" data-step="gy-7"><label>Genel Toplam</label><div class="box"><span class="b">7</span><span class="v"><span data-v="gy-gtotal">185.910</span> TL</span></div></div>
         </div>
 
         <div class="sec"><span>ÖDEME PLANI</span><span class="pay">N: Nakit <b>H: Havale</b> <b>Ç: Çek</b> <b>KK: Kredi Kartı</b></span></div>
@@ -547,49 +547,49 @@
         <li class="step" data-step="ga-1" tabindex="0">
           <span class="b">1</span>
           <div><h3>Fiyat / Lisans Kullanım Bedeli</h3><span class="where">Satın Alınan ARGE Ürünleri</span></div>
-          <div class="val"><span data-v="ga-arge">8.500</span> TL<span class="star">★</span></div>
-          <p>Satış fiyatının <strong>%85'i</strong>. Bu kaleme KDV eklenmez, vergiden muaftır.</p>
-          <div class="calcline"><span data-v="ga-sale">10.000</span> − <span data-v="ga-pz">1.500</span> = <b><span data-v="ga-arge">8.500</span> TL</b></div>
+          <div class="val"><span data-v="ga-arge">8.287,50</span> TL<span class="star">★</span></div>
+          <p>Satış fiyatından önce listeleme bedeli (KDV hariç 250 TL) düşülür; kalan tutarın <strong>%85'i</strong>. Bu kaleme KDV eklenmez, vergiden muaftır.</p>
+          <div class="calcline">(<span data-v="ga-sale">10.000,00</span> − <span data-v="ga-lstn">250,00</span>) × %85 = <b><span data-v="ga-arge">8.287,50</span> TL</b></div>
         </li>
         <li class="step info" data-step="ga-L" tabindex="0">
           <span class="b">★</span>
           <div><h3>Listeleme satırı</h3><span class="where">Satın Alınan Diğer Ürünler · formda basılı</span></div>
           <div class="val">300 TL<span class="star">★</span></div>
-          <p>Formda hazır basılı gelir, bir şey yazılmaz: 250 TL + 50 TL KDV = 300 TL. Aylık Ödenecek Tutar'a eklenir.</p>
+          <p>Formda hazır basılı gelir, bir şey yazılmaz: 250 TL + 50 TL KDV = 300 TL. KDV hariç 250 TL satış fiyatından ilk önce düşülür; KDV dahil 300 TL Aylık Ödenecek Tutar'a eklenir.</p>
         </li>
         <li class="step" data-step="ga-2" tabindex="0">
           <span class="b">2</span>
           <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Hariç Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
-          <div class="val"><span data-v="ga-pz">1.500</span> TL</div>
-          <p>Satış fiyatının <strong>%15'i</strong>.</p>
-          <div class="calcline"><span data-v="ga-sale">10.000</span> × %15 = <b><span data-v="ga-pz">1.500</span> TL</b></div>
+          <div class="val"><span data-v="ga-pz">1.462,50</span> TL</div>
+          <p>Listeleme bedeli (250 TL) düşüldükten sonra kalan tutarın <strong>%15'i</strong>.</p>
+          <div class="calcline">(<span data-v="ga-sale">10.000,00</span> − <span data-v="ga-lstn">250,00</span>) × %15 = <b><span data-v="ga-pz">1.462,50</span> TL</b></div>
         </li>
         <li class="step" data-step="ga-3" tabindex="0">
           <span class="b">3</span>
           <div><h3>Pazarlama ve Organizasyon Bedeli — KDV</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
-          <div class="val"><span data-v="ga-kdv">300</span> TL</div>
+          <div class="val"><span data-v="ga-kdv">292,50</span> TL</div>
           <p>KDV hariç fiyatın <strong>%20'si</strong>, yani KDV tutarı.</p>
-          <div class="calcline"><span data-v="ga-pz">1.500</span> × %20 = <b><span data-v="ga-kdv">300</span> TL</b></div>
+          <div class="calcline"><span data-v="ga-pz">1.462,50</span> × %20 = <b><span data-v="ga-kdv">292,50</span> TL</b></div>
         </li>
         <li class="step" data-step="ga-4" tabindex="0">
           <span class="b">4</span>
           <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Dahil Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
-          <div class="val"><span data-v="ga-pzd">1.800</span> TL<span class="star">★</span></div>
+          <div class="val"><span data-v="ga-pzd">1.755,00</span> TL<span class="star">★</span></div>
           <p>KDV hariç fiyat ile KDV'nin toplamı.</p>
-          <div class="calcline"><span data-v="ga-pz">1.500</span> + <span data-v="ga-kdv">300</span> = <b><span data-v="ga-pzd">1.800</span> TL</b></div>
+          <div class="calcline"><span data-v="ga-pz">1.462,50</span> + <span data-v="ga-kdv">292,50</span> = <b><span data-v="ga-pzd">1.755,00</span> TL</b></div>
         </li>
         <li class="step" data-step="ga-5" tabindex="0">
           <span class="b">5</span>
           <div><h3>Aylık Liste Fiyatı</h3><span class="where">Genel Toplam</span></div>
-          <div class="val"><span data-v="ga-list">51.424</span> TL</div>
+          <div class="val"><span data-v="ga-list">51.424,00</span> TL</div>
           <p>Satılan ürünün aylık liste fiyatı. Yukarıdaki <strong>Liste fiyatını seçin</strong> bölümünü açıp il, ilçe, kategori ve paketi seçince gelir; gerekirse elle değiştirilebilir.</p>
         </li>
         <li class="step" data-step="ga-6" tabindex="0">
           <span class="b">6</span>
           <div><h3>Aylık İndirim Tutarı</h3><span class="where">Genel Toplam</span></div>
-          <div class="val"><span data-v="ga-disc">41.424</span> TL</div>
+          <div class="val"><span data-v="ga-disc">41.424,00</span> TL</div>
           <p>Liste fiyatı eksi satış fiyatı.</p>
-          <div class="calcline"><span data-v="ga-list">51.424</span> − <span data-v="ga-sale">10.000</span> = <b><span data-v="ga-disc">41.424</span> TL</b></div>
+          <div class="calcline"><span data-v="ga-list">51.424,00</span> − <span data-v="ga-sale">10.000,00</span> = <b><span data-v="ga-disc">41.424,00</span> TL</b></div>
         </li>
         <li class="step" data-step="ga-7" tabindex="0">
           <span class="b">7</span>
@@ -600,9 +600,9 @@
         <li class="step total" data-step="ga-8" tabindex="0">
           <span class="b">8</span>
           <div><h3>Aylık Ödenecek Tutar</h3><span class="where">Genel Toplam</span></div>
-          <div class="val"><span data-v="ga-total">10.600</span> TL</div>
+          <div class="val"><span data-v="ga-total">10.342,50</span> TL</div>
           <p>Yıldızlı (<span class="star">★</span>) KDV istisnalı ve KDV dahil tutarların toplamı.</p>
-          <div class="calcline"><span data-v="ga-arge">8.500</span> + 300 + <span data-v="ga-pzd">1.800</span> = <b><span data-v="ga-total">10.600</span> TL</b></div>
+          <div class="calcline"><span data-v="ga-arge">8.287,50</span> + <span data-v="ga-lstd">300,00</span> + <span data-v="ga-pzd">1.755,00</span> = <b><span data-v="ga-total">10.342,50</span> TL</b></div>
         </li>
       </ol>
 
@@ -611,63 +611,63 @@
         <li class="step" data-step="gy-1" tabindex="0">
           <span class="b">1</span>
           <div><h3>Fiyat / Lisans Kullanım Bedeli</h3><span class="where">Satın Alınan ARGE Ürünleri</span></div>
-          <div class="val"><span data-v="gy-arge">153.000</span> TL<span class="star">★</span></div>
-          <p>Sözleşme tutarının <strong>%85'i</strong>. Bu kaleme KDV eklenmez, vergiden muaftır.</p>
-          <div class="calcline"><span data-v="gy-sale">180.000</span> − <span data-v="gy-pz">27.000</span> = <b><span data-v="gy-arge">153.000</span> TL</b></div>
+          <div class="val"><span data-v="gy-arge">150.450</span> TL<span class="star">★</span></div>
+          <p>Sözleşme tutarından önce listeleme bedeli (KDV hariç 3.000 TL) düşülür; kalan tutarın <strong>%85'i</strong>. Bu kaleme KDV eklenmez, vergiden muaftır.</p>
+          <div class="calcline">(<span data-v="gy-sale">180.000</span> − <span data-v="gy-lstn">3.000</span>) × %85 = <b><span data-v="gy-arge">150.450</span> TL</b></div>
         </li>
         <li class="step info" data-step="gy-L" tabindex="0">
           <span class="b">★</span>
           <div><h3>Listeleme satırı</h3><span class="where">Satın Alınan Diğer Ürünler · formda basılı</span></div>
           <div class="val">3.600 TL</div>
-          <p>Formda hazır basılı gelir, bir şey yazılmaz: 3.000 TL + 600 TL KDV = 3.600 TL. 3.000 TL <span class="star">★</span> Net Toplam'a, 600 TL <span class="dia">◆</span> Tevkifatlı KDV'ye eklenir.</p>
+          <p>Formda hazır basılı gelir, bir şey yazılmaz: 3.000 TL + 600 TL KDV = 3.600 TL. 3.000 TL sözleşme tutarından ilk önce düşülür, sonra <span class="star">★</span> Net Toplam'a; 600 TL <span class="dia">◆</span> Tevkifatlı KDV'ye eklenir.</p>
         </li>
         <li class="step" data-step="gy-2" tabindex="0">
           <span class="b">2</span>
           <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Hariç Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
-          <div class="val"><span data-v="gy-pz">27.000</span> TL<span class="star">★</span></div>
-          <p>Sözleşme tutarının <strong>%15'i</strong>.</p>
-          <div class="calcline"><span data-v="gy-sale">180.000</span> × %15 = <b><span data-v="gy-pz">27.000</span> TL</b></div>
+          <div class="val"><span data-v="gy-pz">26.550</span> TL<span class="star">★</span></div>
+          <p>Listeleme bedeli (3.000 TL) düşüldükten sonra kalan tutarın <strong>%15'i</strong>.</p>
+          <div class="calcline">(<span data-v="gy-sale">180.000</span> − <span data-v="gy-lstn">3.000</span>) × %15 = <b><span data-v="gy-pz">26.550</span> TL</b></div>
         </li>
         <li class="step" data-step="gy-3" tabindex="0">
           <span class="b">3</span>
           <div><h3>Pazarlama ve Organizasyon Bedeli — KDV</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
-          <div class="val"><span data-v="gy-kdv">5.400</span> TL<span class="dia">◆</span></div>
+          <div class="val"><span data-v="gy-kdv">5.310</span> TL<span class="dia">◆</span></div>
           <p>KDV hariç fiyatın <strong>%20'si</strong>, yani KDV tutarı.</p>
-          <div class="calcline"><span data-v="gy-pz">27.000</span> × %20 = <b><span data-v="gy-kdv">5.400</span> TL</b></div>
+          <div class="calcline"><span data-v="gy-pz">26.550</span> × %20 = <b><span data-v="gy-kdv">5.310</span> TL</b></div>
         </li>
         <li class="step" data-step="gy-4" tabindex="0">
           <span class="b">4</span>
           <div><h3>Pazarlama ve Organizasyon Bedeli — KDV Dahil Fiyat</h3><span class="where">Satın Alınan Diğer Ürünler</span></div>
-          <div class="val"><span data-v="gy-pzd">32.400</span> TL</div>
+          <div class="val"><span data-v="gy-pzd">31.860</span> TL</div>
           <p>KDV hariç fiyat ile KDV'nin toplamı.</p>
-          <div class="calcline"><span data-v="gy-pz">27.000</span> + <span data-v="gy-kdv">5.400</span> = <b><span data-v="gy-pzd">32.400</span> TL</b></div>
+          <div class="calcline"><span data-v="gy-pz">26.550</span> + <span data-v="gy-kdv">5.310</span> = <b><span data-v="gy-pzd">31.860</span> TL</b></div>
         </li>
         <li class="step" data-step="gy-5" tabindex="0">
           <span class="b">5</span>
           <div><h3>Net Toplam</h3><span class="where">Genel Toplam</span></div>
-          <div class="val"><span data-v="gy-net">183.000</span> TL</div>
+          <div class="val"><span data-v="gy-net">180.000</span> TL</div>
           <p>Yıldızlı (<span class="star">★</span>), KDV istisnalı + KDV hariç tutarların toplamı.</p>
-          <div class="calcline"><span data-v="gy-arge">153.000</span> + 3.000 + <span data-v="gy-pz">27.000</span> = <b><span data-v="gy-net">183.000</span> TL</b></div>
+          <div class="calcline"><span data-v="gy-arge">150.450</span> + <span data-v="gy-lstn">3.000</span> + <span data-v="gy-pz">26.550</span> = <b><span data-v="gy-net">180.000</span> TL</b></div>
         </li>
         <li class="step" data-step="gy-6" tabindex="0">
           <span class="b">6</span>
           <div><h3>Tevkifatlı KDV</h3><span class="where">Genel Toplam</span></div>
-          <div class="val"><span data-v="gy-kdvsum">6.000</span> TL</div>
+          <div class="val"><span data-v="gy-kdvsum">5.910</span> TL</div>
           <p>Elmaslı (<span class="dia">◆</span>) KDV tutarlarının toplamı.</p>
-          <div class="calcline">600 + <span data-v="gy-kdv">5.400</span> = <b><span data-v="gy-kdvsum">6.000</span> TL</b></div>
+          <div class="calcline"><span data-v="gy-lstk">600</span> + <span data-v="gy-kdv">5.310</span> = <b><span data-v="gy-kdvsum">5.910</span> TL</b></div>
         </li>
         <li class="step total" data-step="gy-7" tabindex="0">
           <span class="b">7</span>
           <div><h3>Genel Toplam</h3><span class="where">Genel Toplam</span></div>
-          <div class="val"><span data-v="gy-gtotal">189.000</span> TL</div>
+          <div class="val"><span data-v="gy-gtotal">185.910</span> TL</div>
           <p>Yandaki iki hücrenin toplamı: Net Toplam + Tevkifatlı KDV.</p>
-          <div class="calcline"><span data-v="gy-net">183.000</span> + <span data-v="gy-kdvsum">6.000</span> = <b><span data-v="gy-gtotal">189.000</span> TL</b></div>
+          <div class="calcline"><span data-v="gy-net">180.000</span> + <span data-v="gy-kdvsum">5.910</span> = <b><span data-v="gy-gtotal">185.910</span> TL</b></div>
         </li>
       </ol>
     </div>
   </main>
 
-  <p class="note">Kaynak: ARGE ve Üyelik Sözleşmesi GA ve GY formları · Liste fiyatları: Eylül 2026 Winner rate card (16.09.2026) · 21.09.2026</p>
+  <p class="note">Kaynak: ARGE ve Üyelik Sözleşmesi GA ve GY formları · Liste fiyatları: Eylül 2026 Winner rate card (16.09.2026) · 22.09.2026</p>
 </div>
 
 <script>
@@ -696,21 +696,27 @@
     var v = Number(s);
     return isFinite(v) && v >= 0 ? Math.round(v * 100) : null;
   }
-  function fmt(k) {
+  // dec = true writes kuruş on every amount (used once any amount of the contract has kuruş).
+  function fmt(k, dec) {
     if (k == null) return '—';
     var neg = k < 0; k = Math.abs(k);
-    var s = (k / 100).toLocaleString('tr-TR', { minimumFractionDigits: k % 100 ? 2 : 0, maximumFractionDigits: 2 });
+    var s = (k / 100).toLocaleString('tr-TR', { minimumFractionDigits: dec || k % 100 ? 2 : 0, maximumFractionDigits: 2 });
     return (neg ? '−' : '') + s;
   }
-  function put(key, k) {
+  function put(key, k, dec) {
     var els = document.querySelectorAll('[data-v="' + key + '"]');
-    for (var i = 0; i < els.length; i++) els[i].textContent = fmt(k);
+    for (var i = 0; i < els.length; i++) els[i].textContent = fmt(k, dec);
   }
-  function split(S) {
-    if (S == null || S <= 0) return null;
-    var pz = Math.round(S * 15 / 100);      // %15 pazarlama, KDV hariç
+  function hasKurus(list) {
+    return list.some(function (k) { return k != null && k % 100 !== 0; });
+  }
+  // Listeleme (KDV hariç) comes off the sale first; the rest is split %85 lisans / %15 pazarlama.
+  function split(S, lst) {
+    if (S == null || S <= lst.net) return null;
+    var base = S - lst.net;
+    var pz = Math.round(base * 15 / 100);   // %15 pazarlama, KDV hariç
     var kdv = Math.round(pz * 20 / 100);    // pazarlama KDV'si
-    return { sale: S, pz: pz, arge: S - pz, kdv: kdv, pzd: pz + kdv };
+    return { sale: S, base: base, pz: pz, arge: base - pz, kdv: kdv, pzd: pz + kdv };
   }
 
   // ---------- list price picker ----------
@@ -803,29 +809,35 @@
 
   function update() {
     // Aylık (GA)
-    var a = split(parse(gaSale.value)), L = parse(gaList.value);
+    var a = split(parse(gaSale.value), GA_LIST), L = parse(gaList.value);
     var gaTotal = a ? a.arge + GA_LIST.net + GA_LIST.kdv + a.pzd : null;
     var gaDisc = a && L != null ? L - a.sale : null;
-    put('ga-sale', a && a.sale); put('ga-arge', a && a.arge); put('ga-pz', a && a.pz); put('ga-kdv', a && a.kdv);
-    put('ga-pzd', a && a.pzd); put('ga-list', L); put('ga-disc', gaDisc); put('ga-total', gaTotal);
+    var dA = hasKurus(a ? [a.sale, a.arge, a.pz, a.kdv, L, gaDisc, gaTotal] : []);
+    put('ga-sale', a && a.sale, dA); put('ga-arge', a && a.arge, dA); put('ga-pz', a && a.pz, dA); put('ga-kdv', a && a.kdv, dA);
+    put('ga-pzd', a && a.pzd, dA); put('ga-list', L, dA); put('ga-disc', gaDisc, dA); put('ga-total', gaTotal, dA);
+    put('ga-lstn', GA_LIST.net, dA); put('ga-lstd', GA_LIST.net + GA_LIST.kdv, dA);
 
     // Yıllık (GY)
-    var y = split(parse(gySale.value));
+    var y = split(parse(gySale.value), GY_LIST);
     var gyNet = y ? y.arge + GY_LIST.net + y.pz : null;
     var gyKdv = y ? GY_LIST.kdv + y.kdv : null;
-    put('gy-sale', y && y.sale); put('gy-arge', y && y.arge); put('gy-pz', y && y.pz); put('gy-kdv', y && y.kdv);
-    put('gy-pzd', y && y.pzd); put('gy-net', gyNet); put('gy-kdvsum', gyKdv); put('gy-gtotal', y ? gyNet + gyKdv : null);
+    var dY = hasKurus(y ? [y.sale, y.arge, y.pz, y.kdv, gyNet, gyKdv] : []);
+    put('gy-sale', y && y.sale, dY); put('gy-arge', y && y.arge, dY); put('gy-pz', y && y.pz, dY); put('gy-kdv', y && y.kdv, dY);
+    put('gy-pzd', y && y.pzd, dY); put('gy-net', gyNet, dY); put('gy-kdvsum', gyKdv, dY); put('gy-gtotal', y ? gyNet + gyKdv : null, dY);
+    put('gy-lstn', GY_LIST.net, dY); put('gy-lstk', GY_LIST.kdv, dY);
 
     // Bar follows the visible mode
-    var s = mode === 'ga' ? a : y, lst = mode === 'ga' ? GA_LIST : GY_LIST;
+    var s = mode === 'ga' ? a : y, lst = mode === 'ga' ? GA_LIST : GY_LIST, d = mode === 'ga' ? dA : dY;
     seg('seg-arge', s && s.arge); seg('seg-pz', s && s.pz); seg('seg-kdv', s && s.kdv); seg('seg-lst', s ? lst.net + lst.kdv : 0);
-    put('bar-arge', s && s.arge); put('bar-pz', s && s.pz); put('bar-kdv', s && s.kdv); put('bar-lst', lst.net + lst.kdv);
+    put('bar-arge', s && s.arge, d); put('bar-pz', s && s.pz, d); put('bar-kdv', s && s.kdv, d); put('bar-lst', lst.net + lst.kdv, d);
 
     // Hints
-    [[gaSale, $('ga-sale-hint'), 'Firmayla anlaşılan aylık tutar'], [gySale, $('gy-sale-hint'), 'Yıllık sözleşmenin toplam tutarı']]
+    [[gaSale, $('ga-sale-hint'), 'Firmayla anlaşılan aylık tutar', GA_LIST], [gySale, $('gy-sale-hint'), 'Yıllık sözleşmenin toplam tutarı', GY_LIST]]
       .forEach(function (x) {
-        var bad = x[0].value.trim() && !(parse(x[0].value) > 0);
-        hint(x[1], bad ? 'Geçerli bir tutar girin' : x[2], bad);
+        var v = parse(x[0].value), typed = !!x[0].value.trim();
+        if (typed && v == null) hint(x[1], 'Geçerli bir tutar girin', true);
+        else if (typed && v <= x[3].net) hint(x[1], 'Tutar, listeleme bedelinden (' + fmt(x[3].net) + ' TL) büyük olmalı', true);
+        else hint(x[1], x[2], false);
       });
     if (gaDisc != null && gaDisc < 0) {
       hint(gaListHint, 'Liste fiyatı satış fiyatından düşük olamaz', true);
